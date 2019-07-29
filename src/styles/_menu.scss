@@ -1,0 +1,129 @@
+.menu {
+
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: 100vh;
+  color: $menu-color;
+  background: $menu-background;
+  transition: height 500ms ease;
+
+  button {
+    height: 2rem;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+
+  svg {
+    width: 2rem;
+    fill: $white;
+    transition: opacity $duration ease, fill $duration ease;
+  }
+
+  // Menu links are stacked and centered
+  .menu-links {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    margin-left: calc(50% - 150px);
+    margin-top: calc(50vh - 87px);
+    transition: margin 500ms ease;
+  }
+
+  .menu-link {
+
+    position: absolute;
+
+    &:nth-child(1) {
+      margin-top: 0rem;
+    }
+    &:nth-child(2) {
+      margin-top: 4rem;
+    }
+    &:nth-child(3) {
+      margin-top: 8rem;
+    }
+
+    color: $white;
+    text-decoration: none;
+    font-size: 3rem;
+    opacity: 1;
+    display: block;
+    transition: color 500ms ease, opacity 500ms ease, font-size 500ms ease, margin-top 500ms ease;
+  }
+
+  // menu "compact" mode
+  &[data-menu-state="compact"] {
+    // Compact height
+    height: 6rem;
+    // Links move to top-left corner
+    .menu-links {
+      margin-left: 5rem;
+      margin-top: 1rem;
+    }
+    // Non-active links are hidden
+    .menu-link:not([data-active="true"]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .menu-link {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  // Update the circle background color based on
+  // last-hovered link
+  &[data-last-hovered="about"] {
+    .circle { background: $about-background; }
+  }
+  &[data-last-hovered="portfolio"] {
+    .circle { background: $portfolio-background; }
+  }
+  &[data-last-hovered="other"] {
+    .circle { background: $other-background; }
+  }
+
+
+  // If currently hovering over the menu...
+  &[data-hovering="true"] {
+    &[data-last-hovered="about"] {
+      .menu-link:not(#about) {
+        opacity: 0;
+      }
+    }
+    &[data-last-hovered="portfolio"] {
+      .menu-link { color: $black; }
+      svg { fill: $black; }
+      .menu-link:not(#portfolio) {
+        opacity: 0;
+      }
+    }
+    &[data-last-hovered="other"] {
+      .menu-link:not(#other) {
+        opacity: 0;
+      }
+    }
+  }
+
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  right: 100%;
+  z-index: -1;
+  transform: scale(1);
+  will-change: transform;
+  &[data-circle-state="expand"] {
+    transform: scale(50);
+  }
+  transition: background ($duration / 2) ease, transform $duration ease;
+}

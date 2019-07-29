@@ -1,0 +1,85 @@
+@import "fonts";
+@import "variables";
+@import "menu";
+@import "portfolio";
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'GT America Expanded';
+  font-weight: bold;
+  padding: 0;
+  background: white;
+
+  &.no-scroll {
+    overflow-y: hidden;
+  }
+}
+
+// Button resets
+button {
+  color: inherit;
+  -webkit-appearance: none;
+  -webkit-rtl-ordering: logical;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: $black;
+}
+
+.grid {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1440px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    &.two {
+      grid-template-columns: 1fr 1fr;
+    }
+    &.three {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    &.four {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.page-container {
+  font-family: "GT America";
+  font-weight: 200;
+  font-size: 1.6rem;
+  width: 75%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: calc(30vh - 109px);
+  h1 { font-weight: 300; }
+  a {
+    color: black;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color $duration/3 ease;
+    &:hover {
+      color: rgba(black, 0.75);
+    }
+  }
+}
