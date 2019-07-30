@@ -106,4 +106,8 @@ img {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 6rem);
+  img {
+    max-height: 80vh;
+    width: auto;
+  }
 }
