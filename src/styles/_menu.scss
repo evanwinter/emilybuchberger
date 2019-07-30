@@ -62,7 +62,7 @@
     height: 6rem;
     // Links move to top-left corner
     .menu-links {
-      margin-left: 5rem;
+      margin-left: 5.5rem;
       margin-top: 1rem;
     }
     // Non-active links are hidden
@@ -71,7 +71,7 @@
       pointer-events: none;
     }
     .menu-link {
-      margin-top: 1rem;
+      margin-top: 1.1rem;
       font-size: 1.5rem;
     }
   }
@@ -125,5 +125,5 @@
   &[data-circle-state="expand"] {
     transform: scale(50);
   }
-  transition: background ($duration / 2) ease, transform $duration ease;
+  transition: background $duration ease, transform $duration*1.25 ease;
 }
