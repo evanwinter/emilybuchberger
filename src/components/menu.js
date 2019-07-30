@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link, navigate } from "gatsby"
-import GhostLinks from "./ghost-links"
 import BackIcon from "../assets/icons/back.svg"
+import { dashToSpace } from "../utils"
 
 const onDesignsPage = () => {
 	if (typeof window === "undefined") return
@@ -17,21 +17,15 @@ const onDesignsPage = () => {
 	return false
 }
 
-const format = (str) => {
-	if (str.split("-").length > 1) {
-		return str.split("-").join(" ")
-	} else {
-		return str
-	}
-}
-
 const Menu = () => {
 	const _menu = useRef(undefined)
+	const _portfolio = useRef(undefined)
+	const _circle = useRef(undefined)
+	
 	const [menuState, setMenuState] = useState("fullscreen")
 	const shrinkMenu = () => setMenuState("compact")
 	const expandMenu = () => setMenuState("fullscreen")
 
-	const _circle = useRef(undefined)
 	const [circleState, setCircleState] = useState("shrink")
 	const shrinkCircle = () => setCircleState("shrink")
 	const expandCircle = () => setCircleState("expand")
@@ -45,15 +39,22 @@ const Menu = () => {
 
 	const [hovering, setHovering] = useState(false)
 
-	const _portfolio = useRef(undefined)
-
+	/**
+	 * When user clicks a menu link...
+	 * - Set menu to "compact"
+	 * - Mark the clicked link as `data-active`
+	 */
 	const handleLinkClick = event => {
 		shrinkMenu()
 		activateLink(event.currentTarget)
 	}
 
+	/**
+	 * When user clicks the back arrow...
+	 * - If on a portfolio page, go back to portfolio index page and keep menu compact
+	 * - Else, reset menu to initial state and go back to the index page
+	 */
 	const handleBackClick = event => {
-
 		if (onDesignsPage()) {
 			navigate("/designs")
 			return
@@ -66,6 +67,12 @@ const Menu = () => {
 		}
 	}
 
+	/**
+	 * When user hovers over a menu link...
+	 * - Expand circle
+	 * - Set `data-hovering` to true
+	 * - Set `data-last-hovered`
+	 */
 	const handleLinkMouseOver = event => {
 		if (event.target.classList.contains("menu-link")) {
 			expandCircle()
@@ -74,6 +81,11 @@ const Menu = () => {
 		}
 	}
 
+	/**
+	 * When user mouses out of the menu links container...
+	 * - Shrink circle
+	 * - Set `data-hovering` to false
+	 */
 	const handleLinkMouseOut = event => {
 		if (menuState === "fullscreen") {
 			shrinkCircle()
@@ -81,7 +93,16 @@ const Menu = () => {
 		}
 	}
 
+	/**
+	 * Each time `menuState` is changed (compacts or expands), 
+	 * check if we need to force the menu to go compact. 
+	 *
+	 * This happens on first visits to portfolio pages because they're
+	 * not recognized as internal links, causing a reload (and a menu state
+	 * reset). This forces the menu to shrink again if it was inadvertantly reset.
+	 */
 	useEffect(() => {
+		// If we're on a portfolio page and menu state isn't "compact", shrink it
 		if (onDesignsPage() && menuState !== "compact") {
 			shrinkMenu()
 			expandCircle()
@@ -127,7 +148,7 @@ const Menu = () => {
 						to="/designs"
 					>
 						{onDesignsPage() ? (
-							format(onDesignsPage())
+							dashToSpace(onDesignsPage())
 						) : (
 							"designs"
 						)}

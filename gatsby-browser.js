@@ -10,8 +10,11 @@
 import "./src/styles/index.scss"
 
 /**
+ * Current device
+ */
+import device from "current-device"
+
+/**
  * Disable auto-scroll to top on page reload
  */
-export const shouldUpdateScroll = () => {
-  return false;
-};
+export const shouldUpdateScroll = () => false

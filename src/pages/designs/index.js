@@ -9,14 +9,14 @@ const DesignsPage = ({ data }) => {
 	return (
 		<Fragment>
 			<SEO title="Designs" keywords={["emily", "buchberger", "design", "portfolio"]} />
-			<section id="portfolio">
+			<section className="portfolio-page">
 				<div className="grid two">
 					{projects.map(project => (
 						<Link to={`designs/${project.slug}`} className="project" key={project.id}>
 							<Img fluid={project.coverImage.localFile.childImageSharp.fluid} />
 							<div className="project-reveal">
 								<div className="project-details">
-									<h1 className="title">{project.title} &mdash;</h1>
+									<h1 className="title">{project.title} <span className="emdash">&mdash;</span></h1>
 									<h3 className="subtitle">{project.subtitle}</h3>
 								</div>
 							</div>
