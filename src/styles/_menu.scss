@@ -1,3 +1,6 @@
+$menu-links-width: 251px;
+$menu-links-height: 174px;
+
 .menu {
 
   position: sticky;
@@ -29,7 +32,7 @@
     display: flex;
     width: 300px;
     flex-direction: column;
-    margin-left: calc(50% - 150px);
+    margin-left: calc(50% - 125px);
     margin-top: calc(50vh - 87px);
     transition: margin 500ms ease;
   }
