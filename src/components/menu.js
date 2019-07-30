@@ -157,7 +157,7 @@ const Menu = () => {
 						className="menu-link"
 						onClick={handleLinkClick}
 						id="other"
-						to="/other"
+						to="/things"
 					>
 						things
 					</Link>

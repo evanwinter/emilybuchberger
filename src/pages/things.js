@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import SEO from "../components/seo"
 import UnderConstruction from "../assets/images/under-construction.jpg"
 
-const OtherPage = () => (
+const ThingsPage = () => (
 	<Fragment>
 		<SEO title="Other" keywords={["TODO"]} />
 		<section className="other-page">
@@ -11,4 +11,4 @@ const OtherPage = () => (
 	</Fragment>
 )
 
-export default OtherPage
+export default ThingsPage
