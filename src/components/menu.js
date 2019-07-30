@@ -100,7 +100,7 @@ const Menu = () => {
 		>
 			<div>
 				{menuState !== "fullscreen" ? (
-					<button onClick={handleBackClick}>
+					<button className="back-button" onClick={handleBackClick}>
 						<BackIcon />
 					</button>
 				) : (

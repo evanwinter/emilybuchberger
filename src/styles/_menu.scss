@@ -27,6 +27,12 @@ $menu-links-height: 174px;
     transition: opacity $duration ease, fill $duration ease;
   }
 
+  .back-button {
+    &:focus {
+      outline: none;
+    }
+  }
+
   // Menu links are stacked and centered
   .menu-links {
     display: flex;
