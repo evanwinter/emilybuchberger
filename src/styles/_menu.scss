@@ -19,6 +19,7 @@ $menu-links-height: 174px;
     position: absolute;
     top: 2rem;
     left: 1rem;
+    transition: left $duration ease;
     @media (min-width: $breakpoint-sm) {
       left: 2rem;
     }
@@ -43,7 +44,7 @@ $menu-links-height: 174px;
     flex-direction: column;
     margin-left: calc(50% - 125px);
     margin-top: calc(50vh - 87px);
-    transition: margin 500ms ease;
+    transition: margin $duration ease;
   }
 
   .menu-link {
