@@ -43,13 +43,14 @@ $menu-links-height: 174px;
     width: 300px;
     flex-direction: column;
     margin-left: calc(50% - 125px);
-    margin-top: calc(50vh - 87px);
+    margin-top: calc(50vh - 97px);
     transition: margin $duration ease;
   }
 
   .menu-link {
 
     position: absolute;
+    padding: 0.25rem 0;
 
     &:nth-child(1) {
       margin-top: 0rem;
@@ -70,7 +71,7 @@ $menu-links-height: 174px;
   }
 
   // menu "compact" mode
-  &[data-menu-state="compact"] {
+  &[data-menu-fullscreen="false"] {
     // Compact height
     height: 6rem;
     // Links move to top-left corner
@@ -87,7 +88,7 @@ $menu-links-height: 174px;
       pointer-events: none;
     }
     .menu-link {
-      margin-top: 1.05rem;
+      margin-top: 0.75rem;
       font-size: 1.5rem;
     }
   }
@@ -97,49 +98,52 @@ $menu-links-height: 174px;
   &[data-last-hovered="about"] {
     .circle { background: $about-background; }
   }
-  &[data-last-hovered="portfolio"] {
-    .circle { background: $portfolio-background; }
+  &[data-last-hovered="designs"] {
+    .circle { background: $designs-background; }
   }
-  &[data-last-hovered="other"] {
-    .circle { background: $other-background; }
+  &[data-last-hovered="things"] {
+    .circle { background: $things-background; }
   }
 
 
   // If currently hovering over the menu...
-  &[data-hovering="true"] {
+  &[data-circle-fullscreen="true"] {
     &[data-last-hovered="about"] {
       .menu-link:not(#about) {
         opacity: 0;
       }
     }
-    &[data-last-hovered="portfolio"] {
+    &[data-last-hovered="designs"] {
       .menu-link { color: $black; }
       svg { fill: $black; }
-      .menu-link:not(#portfolio) {
+      .menu-link:not(#designs) {
         opacity: 0;
       }
     }
-    &[data-last-hovered="other"] {
-      .menu-link:not(#other) {
+    &[data-last-hovered="things"] {
+      .menu-link:not(#things) {
         opacity: 0;
       }
     }
   }
 
-}
-
-.circle {
-  width: 100px;
-  height: 100px;
-  background: white;
-  border-radius: 100%;
-  position: absolute;
-  right: 100%;
-  z-index: -1;
-  transform: scale(1);
-  will-change: transform;
-  &[data-circle-state="expand"] {
-    transform: scale(50);
+  .circle {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 100%;
+    position: absolute;
+    right: 100%;
+    z-index: -1;
+    transform: scale(1);
+    will-change: transform;
+    transition: background $duration ease, transform $duration*1.25 ease;
   }
-  transition: background $duration ease, transform $duration*1.25 ease;
+
+  &[data-circle-fullscreen="true"] {
+    .circle {
+      transform: scale(50);
+    }
+  }
+
 }

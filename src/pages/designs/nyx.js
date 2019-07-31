@@ -6,7 +6,7 @@ import SEO from "../../components/seo"
 
 const NyxPage = ({ data }) => {
 	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
-	const { images, pdf } = pageData
+	const { images, pdf, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-nyx-1")
 	const two = images.find(image => image.localFile.name === "project-nyx-2")
@@ -23,17 +23,9 @@ const NyxPage = ({ data }) => {
 				<section className="portfolio-page">
 					<Img fluid={one.localFile.childImageSharp.fluid} />
 					<section className="text-block">
-						<h1>Nyx &mdash;</h1>
-						<h3>rebrand</h3>
-						<p>
-							NYX is a major cosmetics line without a clear voice in the
-							ever-growing makeup industry. I wanted to give them a fresh look
-							and distinct voice that would elevate their brand. Nyx is the name
-							for the Greek goddess of the night. In the the rebrand, the logo
-							is a symbol for a flower that blooms at night. Ultimately, the
-							brand aims to empower people to find themselves through free
-							expression.
-						</p>
+						<h1>{title} &mdash;</h1>
+						<h3>{subtitle}</h3>
+						<p>{summary.summary}</p>
 					</section>
 					<Img fluid={two.localFile.childImageSharp.fluid} />
 					<Img fluid={three.localFile.childImageSharp.fluid} />
@@ -76,6 +68,9 @@ export const query = graphql`
 					id
 					title
 					subtitle
+					summary {
+						summary
+					}
 					pdf {
 						localFile {
 							publicURL

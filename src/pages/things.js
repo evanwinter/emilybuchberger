@@ -4,8 +4,8 @@ import UnderConstruction from "../assets/images/under-construction.jpg"
 
 const ThingsPage = () => (
 	<Fragment>
-		<SEO title="Other" keywords={["TODO"]} />
-		<section className="other-page">
+		<SEO title="Things" keywords={["TODO"]} />
+		<section className="things-page">
 			<img src={UnderConstruction} />
 		</section>
 	</Fragment>

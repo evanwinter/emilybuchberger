@@ -5,11 +5,13 @@ import SEO from "../../components/seo"
 
 const SensesPage = ({ data }) => {
 	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
-	const { images } = pageData
+	const { images, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-senses-1")
 	const two = images.find(image => image.localFile.name === "project-senses-2")
-	const three = images.find(image => image.localFile.name === "project-senses-3")
+	const three = images.find(
+		image => image.localFile.name === "project-senses-3"
+	)
 
 	return (
 		<Fragment>
@@ -18,14 +20,9 @@ const SensesPage = ({ data }) => {
 				<section className="portfolio-page">
 					<Img fluid={two.localFile.childImageSharp.fluid} />
 					<section className="text-block">
-						<h1>Senses &mdash;</h1>
-						<h3>custom typography</h3>
-						<p>
-							This project is a series of typographic forms that evoke the
-							feeling of each of these senses (touch, look, and smell). The
-							letter forms take on a visual language that shows the power of
-							type and color as a tool to evoke feeling and emotion.
-						</p>
+						<h1>{title} &mdash;</h1>
+						<h3>{subtitle}</h3>
+						<p>{summary.summary}</p>
 					</section>
 					<Img fluid={one.localFile.childImageSharp.fluid} />
 					<Img fluid={three.localFile.childImageSharp.fluid} />
@@ -45,6 +42,9 @@ export const query = graphql`
 					id
 					title
 					subtitle
+					summary {
+						summary
+					}
 					pdf {
 						localFile {
 							publicURL

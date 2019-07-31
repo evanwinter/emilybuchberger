@@ -1,12 +1,11 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import { Link } from "gatsby"
 import Img from "gatsby-image"
 import SEO from "../../components/seo"
 
 const BookSeriesPage = ({ data }) => {
 	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
-	const { images } = pageData
+	const { images, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-book-series-1")
 	const two = images.find(image => image.localFile.name === "project-book-series-2")
@@ -24,17 +23,9 @@ const BookSeriesPage = ({ data }) => {
 				<section className="portfolio-page">
 					<Img fluid={one.localFile.childImageSharp.fluid} />
 					<section className="text-block">
-						<h1>Book Series &mdash;</h1>
-						<h3>editorial design</h3>
-						<p>
-							These three books are all stories written about primates. Ishmael
-							asks deeper questions about the human condition. Koko’s Story
-							chronicles the life of a gorilla who learned sign language. In the
-							Shadow of Man is the novel written by Jane Goodall as she lived
-							with chimpanzees in the wild. I wanted to modernize these books in
-							order to reach a newer audience as well as spread their messages
-							of love for animals and the planet.
-						</p>
+						<h1>{title} &mdash;</h1>
+						<h3>{subtitle}</h3>
+						<p>{summary.summary}</p>
 					</section>
 					<Img fluid={two.localFile.childImageSharp.fluid} />
 					<Img fluid={three.localFile.childImageSharp.fluid} />
@@ -63,6 +54,9 @@ export const query = graphql`
 					id
 					title
 					subtitle
+					summary {
+						summary
+					}
 					images {
 						localFile {
 							name

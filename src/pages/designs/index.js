@@ -13,7 +13,7 @@ const DesignsPage = ({ data }) => {
 			<section className="portfolio-page">
 				<div className="grid two">
 					{projects.map(project => (
-						<Link to={`designs/${project.slug}`} className="project" key={project.id}>
+						<Link to={`/designs/${project.slug}`} className="project" key={project.id}>
 							<Img fluid={project.coverImage.localFile.childImageSharp.fluid} />
 							<div className="project-reveal">
 								<div className="project-details">

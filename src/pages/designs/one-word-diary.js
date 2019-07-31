@@ -7,7 +7,7 @@ import SEO from "../../components/seo"
 const OneWordDiaryPage = ({ data }) => {
 
 	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
-	const { images } = pageData
+	const { images, summary, title, subtitle } = pageData
 
 	const right = images.find(image => image.localFile.name === "project-one-word-diary-1")
 	const spooky = images.find(image => image.localFile.name === "project-one-word-diary-2")
@@ -28,14 +28,9 @@ const OneWordDiaryPage = ({ data }) => {
 			<section id="one-word-diary">
 				<section className="portfolio-page">
 					<section className="text-block">
-						<h1>One Word Diary &mdash;</h1>
-						<h3>type play</h3>
-						<p>
-							As a quick exercise, each day, I gave myself the task of summing up
-							what I had done in one word. So this is a little time capsule of a
-							couple of days in my life and how I translated them into type and
-							color.
-						</p>
+						<h1>{title} &mdash;</h1>
+						<h3>{subtitle}</h3>
+						<p>{summary.summary}</p>
 					</section>
 					<div className="grid three">
 						<Img fluid={right.localFile.childImageSharp.fluid} />
@@ -68,6 +63,9 @@ export const query = graphql`
 					id
 					title
 					subtitle
+					summary {
+						summary
+					}
 					images {
 						localFile {
 							name
