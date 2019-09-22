@@ -26,6 +26,7 @@ $menu-links-height: 174px;
   }
 
   svg {
+    height: auto;
     width: 2rem;
     fill: $white;
     transition: opacity $duration ease, fill $duration ease;
@@ -144,6 +145,16 @@ $menu-links-height: 174px;
     .circle {
       transform: scale(50);
     }
+  }
+
+  .smiley-icon {
+    svg {
+      width: 4rem;
+      transform: rotate(15deg);
+    }
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
   }
 
 }

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link, navigate } from "gatsby"
 import BackIcon from "../assets/icons/back.svg"
+import SmileyIcon from "../assets/icons/smiley.svg"
 import { dashToSpace } from "../utils"
 
 const BackButton = ({ handleBackClick }) => {
@@ -12,12 +13,13 @@ const BackButton = ({ handleBackClick }) => {
 }
 
 const Menu = ({ pathname }) => {
-	
+
 	// Get page and sub-page relative to "/"
 	const [, page, subPage] = [...pathname.split("/")]
-	
+
 	const _menu = useRef(undefined)
 	const _circle = useRef(undefined)
+	const _smiley = useRef(undefined)
 
 	const [menuFullscreen, setMenuFullscreen] = useState(true)
 	const [circleFullscreen, setCircleFullscreen] = useState(false)
@@ -36,6 +38,10 @@ const Menu = ({ pathname }) => {
 	const handleLinkClick = event => {
 		setMenuFullscreen(false)
 		event.currentTarget.dataset.active = true
+	}
+
+	const handleThingsClick = event => {
+		_smiley.current.hidden = !_smiley.current.hidden
 	}
 
 	/**
@@ -81,7 +87,7 @@ const Menu = ({ pathname }) => {
 	 * - Expand menu
 	 * - Shrink circle
 	 * - Unset "last hovered"
-	 * - Unset 
+	 * - Unset
 	 */
 	const forceMenuFullscreen = () => {
 		setMenuFullscreen(true)
@@ -130,8 +136,11 @@ const Menu = ({ pathname }) => {
 					<Link className="menu-link" onClick={handleLinkClick} id="designs" to="/designs">
 						{subPage ? dashToSpace(subPage) : "designs"}
 					</Link>
-					<Link className="menu-link" onClick={handleLinkClick} id="things" to="/things">
+					<Link className="menu-link" onClick={handleThingsClick} id="things" to="/">
 						things
+						<div className="smiley-icon" ref={_smiley} >
+							<SmileyIcon />
+						</div>
 					</Link>
 				</div>
 			</div>
