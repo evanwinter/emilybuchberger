@@ -138,7 +138,7 @@ const Menu = ({ pathname }) => {
 					</Link>
 					<Link className="menu-link" onClick={handleThingsClick} id="things" to="/">
 						things
-						<div className="smiley-icon" ref={_smiley} >
+						<div className="smiley-icon" ref={_smiley} disabled>
 							<SmileyIcon />
 						</div>
 					</Link>
