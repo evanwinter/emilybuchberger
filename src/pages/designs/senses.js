@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import SEO from "../../components/seo"
 
 const SensesPage = ({ data }) => {
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-senses-1")
@@ -36,7 +36,7 @@ export default SensesPage
 
 export const query = graphql`
 	query sensesQuery {
-		allContentfulProjects(filter: { slug: { eq: "senses" } }) {
+		allContentfulProject(filter: { slug: { eq: "senses" } }) {
 			edges {
 				node {
 					id
@@ -54,7 +54,10 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

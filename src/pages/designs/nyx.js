@@ -5,7 +5,7 @@ import BackIcon from "../../assets/icons/back.svg"
 import SEO from "../../components/seo"
 
 const NyxPage = ({ data }) => {
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, pdf, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-nyx-1")
@@ -62,7 +62,7 @@ export default NyxPage
 
 export const query = graphql`
 	query nyxQuery {
-		allContentfulProjects(filter: { slug: { eq: "nyx" } }) {
+		allContentfulProject(filter: { slug: { eq: "nyx" } }) {
 			edges {
 				node {
 					id
@@ -80,7 +80,10 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

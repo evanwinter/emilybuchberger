@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import SEO from "../../components/seo"
 
 const BookSeriesPage = ({ data }) => {
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle } = pageData
 
 	const one = images.find(image => image.localFile.name === "project-book-series-1")
@@ -48,7 +48,7 @@ export default BookSeriesPage
 
 export const query = graphql`
 	query bookSeriesQuery {
-		allContentfulProjects(filter: { slug: { eq: "book-series" } }) {
+		allContentfulProject(filter: { slug: { eq: "book-series" } }) {
 			edges {
 				node {
 					id
@@ -61,7 +61,10 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

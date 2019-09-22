@@ -40,7 +40,7 @@ export const query = graphql`
 				node {
 					title
 					projects {
-						... on ContentfulProjects {
+						... on ContentfulProject {
 							id
 							slug
 							subtitle
@@ -49,7 +49,10 @@ export const query = graphql`
 								title
 								localFile {
 									childImageSharp {
-										fluid(maxWidth: 1440) {
+										fluid(
+											maxWidth: 1440,
+											quality: 90
+										) {
 											...GatsbyImageSharpFluid_noBase64
 										}
 									}

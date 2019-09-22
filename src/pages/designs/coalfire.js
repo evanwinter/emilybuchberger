@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import SEO from "../../components/seo"
 
 const CoalfirePage = ({ data }) => {
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle } = pageData
 
 	const stampImg = images.find(image => image.localFile.name === "project-coalfire-stamp")
@@ -34,7 +34,7 @@ export default CoalfirePage
 
 export const query = graphql`
 	query coalfireQuery {
-		allContentfulProjects(filter: { slug: { eq: "coalfire" } }) {
+		allContentfulProject(filter: { slug: { eq: "coalfire" } }) {
 			edges {
 				node {
 					id
@@ -47,7 +47,10 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

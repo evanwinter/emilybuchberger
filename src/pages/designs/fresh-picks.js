@@ -6,7 +6,7 @@ import SEO from "../../components/seo"
 
 const FreshPicksPage = ({ data }) => {
 
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, pdf, summary, title, subtitle } = pageData
 
 	const gif = images.find(image => image.localFile.name === "project-fp-gif")
@@ -65,14 +65,14 @@ export default FreshPicksPage
 
 export const query = graphql`
 	query freshPicksQuery {
-		allContentfulProjects(filter: { slug: { eq: "fresh-picks" } }) {
+		allContentfulProject(filter: { slug: { eq: "fresh-picks" } }) {
 			edges {
 				node {
 					id
 					title
 					subtitle
-					summary { 
-						summary 
+					summary {
+						summary
 					}
 					pdf {
 						localFile {
@@ -84,7 +84,10 @@ export const query = graphql`
 							name
 							publicURL
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}
