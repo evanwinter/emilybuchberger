@@ -63,6 +63,7 @@ export const query = graphql`
 						summary
 					}
 					images {
+						title
 						localFile {
 							name
 							childImageSharp {
