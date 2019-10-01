@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const DefaultTemplate = ({ data, pageContext }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
@@ -11,7 +11,7 @@ const DefaultTemplate = ({ data, pageContext }) => {
 
 	return (
 		<Fragment>
-			<SEO title={title} keywords={[]} />
+			<Seo title={title} keywords={[]} />
 			<section className={`template-page ${templateClassName}-page`}>
 				<section className="portfolio-page">
 					<Img fluid={images[0].localFile.childImageSharp.fluid} />

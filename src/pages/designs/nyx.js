@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 
 const NyxPage = ({ data }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
@@ -18,7 +18,7 @@ const NyxPage = ({ data }) => {
 
 	return (
 		<Fragment>
-			<SEO title="Nyx" keywords={["TODO"]} />
+			<Seo title="Nyx" keywords={["TODO"]} />
 			<section id="nyx">
 				<section className="portfolio-page">
 					<Img fluid={one.localFile.childImageSharp.fluid} />

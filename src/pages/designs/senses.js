@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 
 const SensesPage = ({ data }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
@@ -15,7 +15,7 @@ const SensesPage = ({ data }) => {
 
 	return (
 		<Fragment>
-			<SEO title="Senses" keywords={["TODO"]} />
+			<Seo title="Senses" keywords={["TODO"]} />
 			<section id="senses">
 				<section className="portfolio-page">
 					<Img fluid={two.localFile.childImageSharp.fluid} />

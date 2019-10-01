@@ -1,14 +1,14 @@
 import React, { Fragment } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 import { getSlug } from "../../utils"
 
 const DesignsPage = ({ data }) => {
 	const { projects } = data.allContentfulPortfolio.edges.map(edge => edge.node)[0]
 	return (
 		<Fragment>
-			<SEO title="Designs" keywords={["emily", "buchberger", "design", "portfolio"]}
+			<Seo title="Designs" keywords={["emily", "buchberger", "design", "portfolio"]}
 			/>
 			<section className="portfolio-page">
 				<div className="grid two">

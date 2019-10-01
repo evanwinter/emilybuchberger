@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Portrait from "../assets/images/Emily.jpg"
 import ReactMarkdown from 'react-markdown'
 
@@ -11,7 +11,7 @@ const AboutPage = ({ data }) => {
 	const aboutText = pageData.text.text
 	return (
 		<Fragment>
-			<SEO title="About" keywords={["TODO"]} />
+			<Seo title="About" keywords={["TODO"]} />
 			<section id="about-page" className="page-container">
 				<div className="about-layout">
 					<div className="left">

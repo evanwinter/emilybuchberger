@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 
 const FreshPicksPage = ({ data }) => {
 
@@ -20,7 +20,7 @@ const FreshPicksPage = ({ data }) => {
 
 	return (
 		<Fragment>
-			<SEO title="Fresh Picks" keywords={["TODO"]} />
+			<Seo title="Fresh Picks" keywords={["TODO"]} />
 			<section id="fresh-picks">
 				<section className="portfolio-page">
 					<img src={gif.localFile.publicURL} alt={gif.localFile.name} />
