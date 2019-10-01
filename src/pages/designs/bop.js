@@ -7,17 +7,15 @@ const BopPage = ({ data }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle } = pageData
 
-	console.log(images)
-
-	const hero = images.find(image => image.localFile.name === "BOP-hero")
-	const img1 = images.find(image => image.localFile.name === "BOP-Website-01")
-	const img2 = images.find(image => image.localFile.name === "BOP-Website-02")
-	const img3 = images.find(image => image.localFile.name === "BOP-Website-03")
-	const img4 = images.find(image => image.localFile.name === "BOP-Website-04")
-	const img5 = images.find(image => image.localFile.name === "BOP-Website-05")
-	const img6 = images.find(image => image.localFile.name === "BOP-Website-06")
-	const img7 = images.find(image => image.localFile.name === "BOP-Website-07")
-	const img8 = images.find(image => image.localFile.name === "BOP-Website-08")
+	const hero = images.find(image => image.title === "BOP-hero")
+	const img1 = images.find(image => image.title === "BOP-Website-01")
+	const img2 = images.find(image => image.title === "BOP-Website-02")
+	const img3 = images.find(image => image.title === "BOP-Website-03")
+	const img4 = images.find(image => image.title === "BOP-Website-04")
+	const img5 = images.find(image => image.title === "BOP-Website-05")
+	const img6 = images.find(image => image.title === "BOP-Website-06")
+	const img7 = images.find(image => image.title === "BOP-Website-07")
+	const img8 = images.find(image => image.title === "BOP-Website-08")
 
 	return (
 		<Fragment>
