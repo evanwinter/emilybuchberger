@@ -41,6 +41,9 @@ const Menu = ({ pathname }) => {
 	}
 
 	const handleThingsClick = event => {
+		if (_smiley.current.hidden) {
+			event.preventDefault()
+		}
 		_smiley.current.hidden = !_smiley.current.hidden
 	}
 
@@ -136,12 +139,12 @@ const Menu = ({ pathname }) => {
 					<Link className="menu-link" onClick={handleLinkClick} id="designs" to="/designs">
 						{subPage ? dashToSpace(subPage) : "designs"}
 					</Link>
-					<Link className="menu-link" onClick={handleThingsClick} id="things" to="/">
+					<a className="menu-link" onClick={handleThingsClick} id="things" href="https://dribbble.com/embuch" target="_blank">
 						things
 						<div className="smiley-icon" ref={_smiley} hidden>
 							<SmileyIcon />
 						</div>
-					</Link>
+					</a>
 				</div>
 			</div>
 			<div ref={_circle} className="circle" />
