@@ -1,39 +1,34 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
-import SEO from "../../components/seo"
+import Seo from "../../components/seo"
 
 const FreshPicksPage = ({ data }) => {
 
-	const [pageData] = data.allContentfulProjects.edges.map(edge => edge.node)
-	const { images, pdf } = pageData
+	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
+	const { images, pdf, summary, title, subtitle } = pageData
 
 	const gif = images.find(image => image.localFile.name === "project-fp-gif")
 	const billboard = images.find(image => image.localFile.name === "project-fp-billboard")
 	const magazine = images.find(image => image.localFile.name === "project-fp-magazine")
 	const print = images.find(image => image.localFile.name === "project-fp-print")
 	const web = images.find(image => image.localFile.name === "project-fp-web")
-	const businessCards = images.find(image => image.localFile.name === "project-fp-business-cards")
+	// const businessCards = images.find(image => image.localFile.name === "project-fp-business-cards")
 	const packingSlip = images.find(image => image.localFile.name === "project-fp-packing-slip")
 	const bag = images.find(image => image.localFile.name === "project-fp-bag")
 
 	return (
 		<Fragment>
-			<SEO title="Fresh Picks" keywords={["TODO"]} />
+			<Seo title="Fresh Picks" keywords={["TODO"]} />
 			<section id="fresh-picks">
 				<section className="portfolio-page">
-					<img src={gif.localFile.publicURL} />
+					<img src={gif.localFile.publicURL} alt={gif.localFile.name} />
 					<section className="text-block">
-						<h1>Fresh Picks &mdash;</h1>
-						<h3>rebrand</h3>
+						<h1>{title} &mdash;</h1>
+						<h3>{subtitle}</h3>
 						<p>
-							Irv and Shelly's Fresh Picks is a grocery delivery service that
-							brings organic, local, and seasonal produce to your door. I created
-							a recognizable brand that represents their homegrown qualities and
-							freindly disposition. This flexible design system incorporates a
-							logo that changes with season just like the product does,
-							guaranteeing fresh picks year round.
+							{summary.summary}
 						</p>
 					</section>
 					<Img fluid={magazine.localFile.childImageSharp.fluid} />
@@ -70,12 +65,15 @@ export default FreshPicksPage
 
 export const query = graphql`
 	query freshPicksQuery {
-		allContentfulProjects(filter: { slug: { eq: "fresh-picks" } }) {
+		allContentfulProject(filter: { slug: { eq: "fresh-picks" } }) {
 			edges {
 				node {
 					id
 					title
 					subtitle
+					summary {
+						summary
+					}
 					pdf {
 						localFile {
 							publicURL
@@ -86,7 +84,10 @@ export const query = graphql`
 							name
 							publicURL
 							childImageSharp {
-								fluid(maxWidth: 1440) {
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

@@ -1,10 +1,10 @@
 import React, { Fragment } from "react"
 import { Link } from "gatsby"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const IndexPage = () => (
   <Fragment>
-    <SEO title="Home" />
+    <Seo title="Home" />
   </Fragment>
 )
 

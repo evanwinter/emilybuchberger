@@ -1,42 +1,43 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Seo from "../../components/seo"
+import Seo from "../components/seo"
 
-const SensesPage = ({ data }) => {
+const DefaultTemplate = ({ data, pageContext }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, summary, title, subtitle } = pageData
+	const { images, summary, title, subtitle, pdf } = pageData
 
-	const one = images.find(image => image.localFile.name === "project-senses-1")
-	const two = images.find(image => image.localFile.name === "project-senses-2")
-	const three = images.find(
-		image => image.localFile.name === "project-senses-3"
-	)
+	const templateClassName = title.split(' ').join('-').toLowerCase()
 
 	return (
 		<Fragment>
-			<Seo title="Senses" keywords={["TODO"]} />
-			<section id="senses">
+			<Seo title={title} keywords={[]} />
+			<section className={`template-page ${templateClassName}-page`}>
 				<section className="portfolio-page">
-					<Img fluid={two.localFile.childImageSharp.fluid} />
+					<Img fluid={images[0].localFile.childImageSharp.fluid} />
 					<section className="text-block">
 						<h1>{title} &mdash;</h1>
 						<h3>{subtitle}</h3>
 						<p>{summary.summary}</p>
 					</section>
-					<Img fluid={one.localFile.childImageSharp.fluid} />
-					<Img fluid={three.localFile.childImageSharp.fluid} />
+					{images.map((image, index) => {
+						if (index > 0)
+							return <Img fluid={image.localFile.childImageSharp.fluid} />
+					})}
 				</section>
 			</section>
 		</Fragment>
 	)
 }
+export default DefaultTemplate
 
-export default SensesPage
 
+/**
+ * Gets $slug from pageContext.slug and gets only the Product with that slug.
+ */
 export const query = graphql`
-	query sensesQuery {
-		allContentfulProject(filter: { slug: { eq: "senses" } }) {
+	query defaultTemplateQuery($slug: String!) {
+		allContentfulProject(filter: { slug: { eq: $slug }}) {
 			edges {
 				node {
 					id
@@ -54,10 +55,7 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

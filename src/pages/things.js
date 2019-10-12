@@ -1,14 +1,14 @@
 import React, { Fragment } from "react"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import UnderConstruction from "../assets/images/under-construction.jpg"
 
-const OtherPage = () => (
+const ThingsPage = () => (
 	<Fragment>
-		<SEO title="Other" keywords={["TODO"]} />
-		<section className="other-page">
+		<Seo title="Things" keywords={["TODO"]} />
+		<section className="things-page">
 			<img src={UnderConstruction} />
 		</section>
 	</Fragment>
 )
 
-export default OtherPage
+export default ThingsPage

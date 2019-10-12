@@ -9,7 +9,7 @@ export const getSlug = (str) => {
  * Replace dashes with spaces
  */
 export const dashToSpace = (str) => {
-	if (str.split("-").length > 1) {
+	if (str.indexOf("-") > -1) {
 		return str.split("-").join(" ")
 	} else {
 		return str
