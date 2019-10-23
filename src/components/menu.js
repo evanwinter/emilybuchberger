@@ -1,28 +1,110 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, useReducer } from "react"
 import { Link, navigate } from "gatsby"
 import BackIcon from "../assets/icons/back.svg"
 import SmileyIcon from "../assets/icons/smiley.svg"
 import { dashToSpace } from "../utils"
 
-const BackButton = ({ handleBackClick }) => {
-	return (
-		<button className="back-button" onClick={handleBackClick}>
-			<BackIcon />
-		</button>
-	)
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "SET_CURRENT_PAGE": {
+			return {
+				...state,
+				page: {
+					...state.page,
+					current: action.current,
+				},
+			}
+		}
+		case "SET_LAST_HOVERED": {
+			return {
+				...state,
+				page: {
+					...state.page,
+					lastHovered: action.lastHovered,
+				},
+			}
+		}
+		case "SET_MENU_FULLSCREEN": {
+			return {
+				...state,
+				menu: {
+					isFullscreen: action.isFullscreen,
+				},
+			}
+		}
+		case "SET_CIRCLE_FULLSCREEN": {
+			return {
+				...state,
+				circle: {
+					isFullscreen: action.isFullscreen,
+				}
+			}
+		}
+		default:
+			throw new Error()
+	}
+}
+
+const actions = {
+	expandMenu: () => ({
+		type: "SET_MENU_FULLSCREEN",
+		isFullscreen: true,
+	}),
+	shrinkMenu: () => ({
+		type: "SET_MENU_FULLSCREEN",
+		isFullscreen: false,
+	}),
+	expandCircle: () => ({
+		type: "SET_CIRCLE_FULLSCREEN",
+		isFullscreen: true,
+	}),
+	shrinkCircle: () => ({
+		type: "SET_CIRCLE_FULLSCREEN",
+		isFullscreen: false,
+	}),
+	setCurrentPage: currentPage => ({
+		type: "SET_CURRENT_PAGE",
+		currentPage: currentPage,
+	}),
+	setLastHovered: lastHovered => ({
+		type: "SET_LAST_HOVERED",
+		lastHovered: lastHovered,
+	}),
+}
+
+const initialState = {
+	page: {
+		current: "/",
+		lastHovered: "/",
+	},
+	menu: {
+		isFullscreen: true,
+	},
+	circle: {
+		isFullscreen: false,
+	},
 }
 
 const Menu = ({ pathname }) => {
-
 	// Get page and sub-page relative to "/"
 	const [, page, subPage] = [...pathname.split("/")]
 
+	// State management
+	const [state, dispatch] = useReducer(reducer, initialState)
+
+	console.log(state)
+
+	// Define elements
 	const _menu = useRef(undefined)
 	const _circle = useRef(undefined)
 	const _smiley = useRef(undefined)
 
-	const [menuFullscreen, setMenuFullscreen] = useState(true)
-	const [circleFullscreen, setCircleFullscreen] = useState(false)
+	// const [menuFullscreen, setMenuFullscreen] = useState(true)
+	// const [circleFullscreen, setCircleFullscreen] = useState(false)
+
+	const menuFullscreen = state.menu.isFullscreen
+	const circleFullscreen = state.circle.isFullscreen
+	const lastHovered = state.page.lastHovered
 
 	const deactivateLinks = () => {
 		Array.from(document.querySelectorAll(".menu-link")).forEach(
@@ -35,10 +117,10 @@ const Menu = ({ pathname }) => {
 	 * - Shrink the menu
 	 * - Activate the link
 	 */
-	const handleLinkClick = event => {
-		setMenuFullscreen(false)
-		event.currentTarget.dataset.active = true
-	}
+	// const handleLinkClick = event => {
+		// setMenuFullscreen(false)
+		// event.currentTarget.dataset.active = true
+	// }
 
 	const handleThingsClick = event => {
 		if (_smiley.current.hidden) {
@@ -70,8 +152,8 @@ const Menu = ({ pathname }) => {
 	 */
 	const handleLinkMouseOver = event => {
 		if (event.target.classList.contains("menu-link")) {
-			setCircleFullscreen(true)
-			_menu.current.dataset.lastHovered = event.target.id
+			dispatch(actions.setLastHovered(event.target.id))
+			dispatch(actions.expandCircle())
 		}
 	}
 
@@ -81,7 +163,7 @@ const Menu = ({ pathname }) => {
 	 */
 	const handleLinkMouseOut = event => {
 		if (menuFullscreen) {
-			setCircleFullscreen(false)
+			dispatch(actions.shrinkCircle())
 		}
 	}
 
@@ -93,19 +175,26 @@ const Menu = ({ pathname }) => {
 	 * - Unset
 	 */
 	const forceMenuFullscreen = () => {
-		setMenuFullscreen(true)
-		setCircleFullscreen(false)
-		_menu.current.dataset.lastHovered = ""
+		dispatch(actions.expandMenu())
+		dispatch(actions.shrinkCircle())
+		dispatch(actions.setLastHovered(""))
 		deactivateLinks()
+		// setMenuFullscreen(true)
+		// setCircleFullscreen(false)
+		// _menu.current.dataset.lastHovered = ""
+		// deactivateLinks()
 	}
 
 	/**
 	 * Force the menu to compact state
 	 */
-	const forceMenuCompact = (currentPage) => {
-		setMenuFullscreen(false)
-		setCircleFullscreen(true)
-		_menu.current.dataset.lastHovered = currentPage
+	const forceMenuCompact = currentPage => {
+		dispatch(actions.shrinkMenu())
+		dispatch(actions.expandCircle())
+		dispatch(actions.setLastHovered(currentPage))
+		// setMenuFullscreen(false)
+		// setCircleFullscreen(true)
+		// _menu.current.dataset.lastHovered = currentPage
 		const link = document.querySelector(`#${currentPage}`)
 		if (link) {
 			link.dataset.active = true
@@ -121,25 +210,54 @@ const Menu = ({ pathname }) => {
 		if (!page && !menuFullscreen) {
 			forceMenuFullscreen()
 		}
-
 		if (page && menuFullscreen) {
 			forceMenuCompact(page)
 		}
-
 	}, [pathname])
 
 	return (
-		<div className="menu" ref={_menu} data-circle-fullscreen={circleFullscreen} data-menu-fullscreen={menuFullscreen}>
+		<div
+			className="menu"
+			ref={_menu}
+			data-circle-fullscreen={circleFullscreen}
+			data-menu-fullscreen={menuFullscreen}
+			data-last-hovered={lastHovered}
+		>
 			<div>
-				{!menuFullscreen ? <BackButton handleBackClick={handleBackClick} /> : ""}
-				<div className="menu-links" onMouseOver={handleLinkMouseOver} onMouseOut={handleLinkMouseOut}>
-					<Link className="menu-link" onClick={handleLinkClick} id="about" to="/about">
+				{!menuFullscreen ? (
+					<button className="back-button" onClick={handleBackClick}>
+						<BackIcon />
+					</button>
+				) : (
+					""
+				)}
+				<div
+					className="menu-links"
+					onMouseOver={handleLinkMouseOver}
+					onMouseOut={handleLinkMouseOut}
+				>
+					<Link
+						className="menu-link"
+						id="about"
+						to="/about"
+					>
 						emily
 					</Link>
-					<Link className="menu-link" onClick={handleLinkClick} id="designs" to="/designs">
+					<Link
+						className="menu-link"
+						id="designs"
+						to="/designs"
+					>
 						{subPage ? dashToSpace(subPage) : "designs"}
 					</Link>
-					<a className="menu-link" onClick={handleThingsClick} id="things" href="https://dribbble.com/embuch" target="_blank">
+					<a
+						className="menu-link"
+						onClick={handleThingsClick}
+						id="things"
+						href="https://dribbble.com/embuch"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						things
 						<div className="smiley-icon" ref={_smiley} hidden>
 							<SmileyIcon />
