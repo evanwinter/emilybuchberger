@@ -83,7 +83,9 @@ img {
   }
 
   @media (min-width: $breakpoint-sm) {
-    margin-top: calc(30vh - 109px);
+    &:not(#about-page) {
+      margin-top: calc(30vh - 109px);
+    }
   }
 }
 
