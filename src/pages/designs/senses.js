@@ -2,30 +2,32 @@ import React, { Fragment } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
+import { prepareImages, fromContentful } from "../../utils"
 
 const SensesPage = ({ data }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, summary, title, subtitle } = pageData
+	const [pageData] = fromContentful(data, 'project')
 
-	const one = images.find(image => image.localFile.name === "project-senses-1")
-	const two = images.find(image => image.localFile.name === "project-senses-2")
-	const three = images.find(
-		image => image.localFile.name === "project-senses-3"
-	)
+	const { images, summary, title, subtitle, heroImage } = pageData
+	const hero = heroImage.localFile.childImageSharp
+	const allImages = prepareImages(images)
 
 	return (
 		<Fragment>
 			<Seo title="Senses" keywords={["TODO"]} />
 			<section id="senses">
 				<section className="portfolio-page">
-					<Img fluid={two.localFile.childImageSharp.fluid} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>{summary.summary}</p>
-					</section>
-					<Img fluid={one.localFile.childImageSharp.fluid} />
-					<Img fluid={three.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={hero.fluid} />
+						<section className="text-block intro">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
+					</div>
+					<div className="portfolio-wrapper">
+						<Img fluid={allImages["project-senses-2"].fluid} />
+						<Img fluid={allImages["project-senses-3"].fluid} />
+					</div>
 				</section>
 			</section>
 		</Fragment>
@@ -51,6 +53,7 @@ export const query = graphql`
 						}
 					}
 					images {
+						title
 						localFile {
 							name
 							childImageSharp {
@@ -63,11 +66,16 @@ export const query = graphql`
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
 							childImageSharp {
-								id
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}

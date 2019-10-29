@@ -7,14 +7,19 @@ const DefaultTemplate = ({ data, pageContext }) => {
 	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle, pdf } = pageData
 
-	const templateClassName = title.split(' ').join('-').toLowerCase()
+	const templateClassName = title
+		.split(" ")
+		.join("-")
+		.toLowerCase()
 
 	return (
 		<Fragment>
 			<Seo title={title} keywords={[]} />
 			<section className={`template-page ${templateClassName}-page`}>
 				<section className="portfolio-page">
-					<Img fluid={images[0].localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={images[0].localFile.childImageSharp.fluid} />
+					</div>
 					<section className="text-block">
 						<h1>{title} &mdash;</h1>
 						<h3>{subtitle}</h3>
@@ -30,7 +35,6 @@ const DefaultTemplate = ({ data, pageContext }) => {
 	)
 }
 export default DefaultTemplate
-
 
 /**
  * Gets $slug from pageContext.slug and gets only the Product with that slug.
@@ -61,11 +65,16 @@ export const query = graphql`
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
 							childImageSharp {
-								id
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}

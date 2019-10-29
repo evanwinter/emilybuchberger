@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer } from "react"
+import React, { useRef, useEffect, useReducer } from "react"
 import { Link, navigate } from "gatsby"
 import BackIcon from "../assets/icons/back.svg"
 import SmileyIcon from "../assets/icons/smiley.svg"

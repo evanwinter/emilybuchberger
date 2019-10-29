@@ -2,42 +2,40 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
+import { prepareImages, fromContentful } from "../../utils"
 
 const BookSeriesPage = ({ data }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, summary, title, subtitle } = pageData
-
-	const one = images.find(image => image.localFile.name === "project-book-series-1")
-	const two = images.find(image => image.localFile.name === "project-book-series-2")
-	const three = images.find(image => image.localFile.name === "project-book-series-3")
-	const four = images.find(image => image.localFile.name === "project-book-series-4")
-	const five = images.find(image => image.localFile.name === "project-book-series-5")
-	const six = images.find(image => image.localFile.name === "project-book-series-6")
-	const seven = images.find(image => image.localFile.name === "project-book-series-7")
-	const eight = images.find(image => image.localFile.name === "project-book-series-8")
+	const [pageData] = fromContentful(data, "project")
+	const { images, summary, title, subtitle, heroImage } = pageData
+	const hero = heroImage.localFile.childImageSharp
+	const allImages = prepareImages(images)
 
 	return (
 		<Fragment>
 			<Seo title="Book Series" keywords={["TODO"]} />
 			<section id="book-series">
 				<section className="portfolio-page">
-					<Img fluid={one.localFile.childImageSharp.fluid} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>{summary.summary}</p>
-					</section>
-					<Img fluid={two.localFile.childImageSharp.fluid} />
-					<Img fluid={three.localFile.childImageSharp.fluid} />
-
-					<div className="grid" style={{ marginTop: `1rem` }}>
-						<Img fluid={four.localFile.childImageSharp.fluid} />
-						<Img fluid={five.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={hero.fluid} />
+						<section className="text-block intro">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
 					</div>
+					<div className="portfolio-wrapper">
+						<Img fluid={allImages["project-book-series-2"].fluid} />
+						<Img fluid={allImages["project-book-series-3"].fluid} />
 
-					<Img fluid={six.localFile.childImageSharp.fluid} />
-					<Img fluid={seven.localFile.childImageSharp.fluid} />
-					<Img fluid={eight.localFile.childImageSharp.fluid} />
+						<div className="grid" style={{ marginTop: `1rem` }}>
+							<Img fluid={allImages["project-book-series-4"].fluid} />
+							<Img fluid={allImages["project-book-series-5"].fluid} />
+						</div>
+
+						<Img fluid={allImages["project-book-series-6"].fluid} />
+						<Img fluid={allImages["project-book-series-7"].fluid} />
+						<Img fluid={allImages["project-book-series-8"].fluid} />
+					</div>
 				</section>
 			</section>
 		</Fragment>
@@ -58,6 +56,7 @@ export const query = graphql`
 						summary
 					}
 					images {
+						title
 						localFile {
 							name
 							childImageSharp {
@@ -70,11 +69,16 @@ export const query = graphql`
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
 							childImageSharp {
-								id
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}

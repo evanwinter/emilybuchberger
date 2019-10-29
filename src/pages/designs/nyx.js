@@ -3,55 +3,54 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
 import Seo from "../../components/seo"
+import { prepareImages, fromContentful } from "../../utils"
 
 const NyxPage = ({ data }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, pdf, summary, title, subtitle } = pageData
-
-	const one = images.find(image => image.localFile.name === "project-nyx-1")
-	const two = images.find(image => image.localFile.name === "project-nyx-2")
-	const three = images.find(image => image.localFile.name === "project-nyx-3")
-	const four = images.find(image => image.localFile.name === "project-nyx-4")
-	const five = images.find(image => image.localFile.name === "project-nyx-5")
-	const six = images.find(image => image.localFile.name === "project-nyx-6")
-	const seven = images.find(image => image.localFile.name === "project-nyx-7")
+	const [pageData] = fromContentful(data, 'project')
+	const { images, pdf, summary, title, subtitle, heroImage } = pageData
+	const hero = heroImage.localFile.childImageSharp
+	const allImages = prepareImages(images)
 
 	return (
 		<Fragment>
 			<Seo title="Nyx" keywords={["TODO"]} />
 			<section id="nyx">
 				<section className="portfolio-page">
-					<Img fluid={one.localFile.childImageSharp.fluid} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>{summary.summary}</p>
-					</section>
-					<Img fluid={two.localFile.childImageSharp.fluid} />
-					<Img fluid={three.localFile.childImageSharp.fluid} />
-					<Img fluid={four.localFile.childImageSharp.fluid} />
-
-					<div className="grid" style={{ marginTop: `1rem` }}>
-						<Img fluid={five.localFile.childImageSharp.fluid} />
-						<Img fluid={six.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={hero.fluid} />
+						<section className="text-block intro">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
 					</div>
+					<div className="portfolio-wrapper">
+						<Img fluid={allImages["project-nyx-2"].fluid} />
+						<Img fluid={allImages["project-nyx-3"].fluid} />
+						<Img fluid={allImages["project-nyx-4"].fluid} />
 
-					<Img fluid={seven.localFile.childImageSharp.fluid} />
+						<div className="grid" style={{ marginTop: `1rem` }}>
+							<Img fluid={allImages["project-nyx-5"].fluid} />
+							<Img fluid={allImages["project-nyx-6"].fluid} />
+						</div>
 
-					<a
-						href={pdf.localFile.publicURL}
-						id="brand-guide-button"
-						target="_blank"
-						style={{
-							color: `white`,
-							display: `inline-block`,
-							background: `black`,
-							padding: `2rem`,
-							textDecoration: `none`,
-						}}
-					>
-						view full brandbook <BackIcon />
-					</a>
+						<Img fluid={allImages["project-nyx-7"].fluid} />
+
+						<a
+							href={pdf.localFile.publicURL}
+							id="brand-guide-button"
+							target="_blank"
+							style={{
+								color: `white`,
+								display: `inline-block`,
+								background: `black`,
+								padding: `2rem`,
+								textDecoration: `none`,
+							}}
+						>
+							view full brandbook <BackIcon />
+						</a>
+					</div>
 				</section>
 			</section>
 		</Fragment>
@@ -77,8 +76,19 @@ export const query = graphql`
 						}
 					}
 					images {
+						title
 						localFile {
 							name
+							childImageSharp {
+								fluid(maxWidth: 1440, quality: 90) {
+									...GatsbyImageSharpFluid_noBase64
+								}
+							}
+						}
+					}
+					heroImage {
+						title
+						localFile {
 							childImageSharp {
 								fluid(
 									maxWidth: 1440,
@@ -86,14 +96,6 @@ export const query = graphql`
 								) {
 									...GatsbyImageSharpFluid_noBase64
 								}
-							}
-						}
-					}
-					coverImage {
-						title
-						localFile {
-							childImageSharp {
-								id
 							}
 						}
 					}

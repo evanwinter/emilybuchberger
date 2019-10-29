@@ -1,30 +1,25 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
-import { getSlug } from "../../utils"
+import ProjectsGrid from "../../components/projects-grid"
+import { fromContentful } from "../../utils"
 
 const DesignsPage = ({ data }) => {
-	const { projects } = data.allContentfulPortfolio.edges.map(edge => edge.node)[0]
+	const portfolios = fromContentful(data, "portfolio")
+	const { projects } = portfolios[0]
+
 	return (
 		<Fragment>
-			<Seo title="Designs" keywords={["emily", "buchberger", "design", "portfolio"]}
+			<Seo
+				title="Designs"
+				keywords={["emily", "buchberger", "design", "portfolio"]}
 			/>
 			<section className="portfolio-page">
-				<div className="grid two">
-					{projects.map(project => (
-						<Link to={`/designs/${project.slug}`} className="project" key={project.id}>
-							<Img fluid={project.coverImage.localFile.childImageSharp.fluid} />
-							<div className="project-reveal">
-								<div className="project-details">
-									<h1 className="title">
-										{project.title} <span className="emdash">&mdash;</span>
-									</h1>
-									<h3 className="subtitle">{project.subtitle}</h3>
-								</div>
-							</div>
-						</Link>
-					))}
+				<div className="portfolio-wrapper">
+					<div className="grid two">
+						<ProjectsGrid projects={projects} />
+					</div>
 				</div>
 			</section>
 		</Fragment>
@@ -49,10 +44,7 @@ export const query = graphql`
 								title
 								localFile {
 									childImageSharp {
-										fluid(
-											maxWidth: 1440,
-											quality: 90
-										) {
+										fluid(maxWidth: 1440, quality: 90) {
 											...GatsbyImageSharpFluid_noBase64
 										}
 									}

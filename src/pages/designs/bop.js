@@ -1,48 +1,90 @@
-import React, { Fragment } from "react"
+import React, { Fragment, useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import BackgroundImage from "gatsby-background-image"
 import Seo from "../../components/seo"
+import FluidImg from "../../components/fluid-img"
+import { prepareImages, fromContentful, fadeIn } from "../../utils"
+import anime from "animejs"
 
 const BopPage = ({ data }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, summary, title, subtitle } = pageData
+	const [pageData] = fromContentful(data, 'project')
+	const { images, summary, title, subtitle, heroImage } = pageData
+	const hero = heroImage.localFile.childImageSharp
+	const allImages = prepareImages(images)
 
-	const hero = images.find(image => image.title === "BOP-hero")
-	const img1 = images.find(image => image.title === "BOP-Website-01")
-	const img2 = images.find(image => image.title === "BOP-Website-02")
-	const img3 = images.find(image => image.title === "BOP-Website-03")
-	const img4 = images.find(image => image.title === "BOP-Website-04")
-	const img5 = images.find(image => image.title === "BOP-Website-05")
-	const img6 = images.find(image => image.title === "BOP-Website-06")
-	const img7 = images.find(image => image.title === "BOP-Website-07")
-	const img8 = images.find(image => image.title === "BOP-Website-08")
+	useEffect(() => {
+		fadeIn(".intro")
+	}, [])
 
 	return (
 		<Fragment>
 			<Seo title="Bop" keywords={["TODO"]} />
 			<section id="bop">
 				<section className="portfolio-page">
-					<Img fluid={hero.localFile.childImageSharp.fluid} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>{summary.summary}</p>
-					</section>
-
-					<div className="grid three">
-						<Img fluid={img1.localFile.childImageSharp.fluid} />
-						<Img fluid={img2.localFile.childImageSharp.fluid} />
-						<Img fluid={img3.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={hero.fluid} />
+						<section className="intro text-block fades-in">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
 					</div>
 
-					<div className="grid three">
-						<Img fluid={img4.localFile.childImageSharp.fluid} />
-						<Img fluid={img5.localFile.childImageSharp.fluid} />
-						<Img fluid={img6.localFile.childImageSharp.fluid} />
+					<div className="portfolio-wrapper">
+						<h3 className="portfolio-center-heading">User Interviews</h3>
+						<div className="grid three">
+							<Img className="graph-1" fluid={allImages["BOP-graph-1"].fluid} />
+							<Img className="graph-2" fluid={allImages["BOP-graph-2"].fluid} />
+							<Img className="graph-3" fluid={allImages["BOP-graph-3"].fluid} />
+						</div>
+
+						<h3 className="portfolio-center-heading">User Personas</h3>
+						<div className="grid three">
+							<Img fluid={allImages["BOP-persona-1"].fluid} />
+							<Img fluid={allImages["BOP-persona-2"].fluid} />
+							<Img fluid={allImages["BOP-persona-3"].fluid} />
+						</div>
+
+						<Img fluid={allImages["BOP-styleguide"].fluid} />
+
+						<FluidImg src={allImages["BOP-joinparty"].fluid} alt={allImages["BOP-joinparty"].title} />
+
+						<div className="grid two">
+							<Img fluid={allImages["BOP-zoom-nowplaying"].fluid} />
+							<div>
+								<h3>User Problems:</h3>
+								<p>
+									not everyone can easily contribute music in group settings
+								</p>
+								<p>not easy to hear a song and add it to music</p>
+								<h3>Solutions:</h3>
+								<p>
+									allow everyone to contribute to the party favorite songs to
+									save to your library
+								</p>
+							</div>
+						</div>
+
+						<div className="grid two">
+							<div>
+								<h3>User Feedback:</h3>
+								<p>
+									“It’d be cool to save/log everything that was played during a
+									specific event into a playlist”
+								</p>
+								<p>not easy to hear a song and add it to music</p>
+								<h3>Solutions:</h3>
+								<p>Go to your history to relive the night</p>
+							</div>
+							<FluidImg src={allImages["BOP-playlist"].fluid} alt={allImages["BOP-playlist"].title} />
+						</div>
 					</div>
 
-					<Img fluid={img7.localFile.childImageSharp.fluid} />
-					<Img fluid={img8.localFile.childImageSharp.fluid} />
+					{
+						// <Img fluid={allImages["BOP-Website-07"]} />
+						// <Img fluid={allImages["BOP-Website-08"]} />
+					}
 				</section>
 			</section>
 		</Fragment>
@@ -66,21 +108,21 @@ export const query = graphql`
 						title
 						localFile {
 							name
+							publicURL
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
 							childImageSharp {
-								id
+								fluid(maxWidth: 1440, quality: 90) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}

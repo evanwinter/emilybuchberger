@@ -2,28 +2,31 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
+import { prepareImages, fromContentful } from "../../utils"
 
 const CoalfirePage = ({ data }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, summary, title, subtitle } = pageData
-
-	const stampImg = images.find(image => image.localFile.name === "project-coalfire-stamp")
-	const menuImgTwo = images.find(image => image.localFile.name === "project-coalfire-menu-2")
-	const colorwayImg = images.find(image => image.localFile.name === "project-coalfire-colorway")
+	const [pageData] = fromContentful(data, 'project')
+	const { images, summary, title, subtitle, heroImage } = pageData
+	const hero = heroImage.localFile.childImageSharp
+	const allImages = prepareImages(images)
 
 	return (
 		<Fragment>
 			<Seo title="Coalfire" keywords={["TODO"]} />
 			<section id="coalfire">
 				<section className="portfolio-page">
-					<Img fluid={menuImgTwo.localFile.childImageSharp.fluid} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>{summary.summary}</p>
-					</section>
-					<Img fluid={stampImg.localFile.childImageSharp.fluid} />
-					<Img fluid={colorwayImg.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<Img fluid={hero.fluid} />
+						<section className="text-block intro">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
+					</div>
+					<div className="portfolio-wrapper">
+						<Img fluid={allImages["project-coalfire-stamp"].fluid} />
+						<Img fluid={allImages["project-coalfire-colorway"].fluid} />
+					</div>
 				</section>
 			</section>
 		</Fragment>
@@ -44,6 +47,7 @@ export const query = graphql`
 						summary
 					}
 					images {
+						title
 						localFile {
 							name
 							childImageSharp {
@@ -56,11 +60,16 @@ export const query = graphql`
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
 							childImageSharp {
-								id
+								fluid(
+									maxWidth: 1440,
+									quality: 90
+								) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}

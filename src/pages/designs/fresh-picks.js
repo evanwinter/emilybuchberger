@@ -3,57 +3,54 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
 import Seo from "../../components/seo"
+import FluidImg from "../../components/fluid-img"
+import { prepareImages, fromContentful } from "../../utils"
 
 const FreshPicksPage = ({ data }) => {
-
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
-	const { images, pdf, summary, title, subtitle } = pageData
-
-	const gif = images.find(image => image.localFile.name === "project-fp-gif")
-	const billboard = images.find(image => image.localFile.name === "project-fp-billboard")
-	const magazine = images.find(image => image.localFile.name === "project-fp-magazine")
-	const print = images.find(image => image.localFile.name === "project-fp-print")
-	const web = images.find(image => image.localFile.name === "project-fp-web")
-	// const businessCards = images.find(image => image.localFile.name === "project-fp-business-cards")
-	const packingSlip = images.find(image => image.localFile.name === "project-fp-packing-slip")
-	const bag = images.find(image => image.localFile.name === "project-fp-bag")
+	const [pageData] = fromContentful(data, 'project')
+	const { images, pdf, summary, title, subtitle, heroImage } = pageData
+	const heroSrc = heroImage.localFile.publicURL
+	const heroTitle = heroImage.title
+	const allImages = prepareImages(images)
 
 	return (
 		<Fragment>
 			<Seo title="Fresh Picks" keywords={["TODO"]} />
 			<section id="fresh-picks">
 				<section className="portfolio-page">
-					<img src={gif.localFile.publicURL} alt={gif.localFile.name} />
-					<section className="text-block">
-						<h1>{title} &mdash;</h1>
-						<h3>{subtitle}</h3>
-						<p>
-							{summary.summary}
-						</p>
-					</section>
-					<Img fluid={magazine.localFile.childImageSharp.fluid} />
-					<Img fluid={packingSlip.localFile.childImageSharp.fluid} />
-					<div className="grid two-thirds-one-third">
-						<Img fluid={print.localFile.childImageSharp.fluid} />
-						<Img fluid={bag.localFile.childImageSharp.fluid} />
+					<div className="hero">
+						<FluidImg src={heroSrc} alt={heroTitle} />
+						<section className="text-block intro">
+							<h1>{title} &mdash;</h1>
+							<h3>{subtitle}</h3>
+							<p>{summary.summary}</p>
+						</section>
 					</div>
-					<Img fluid={billboard.localFile.childImageSharp.fluid} />
-					<Img fluid={web.localFile.childImageSharp.fluid} />
+					<div className="portfolio-wrapper">
+						<Img fluid={allImages["project-fp-magazine"].fluid} />
+						<Img fluid={allImages["project-fp-packing-slip"].fluid} />
+						<div className="grid two-thirds-one-third">
+							<Img fluid={allImages["project-fp-print"].fluid} />
+							<Img fluid={allImages["project-fp-bag"].fluid} />
+						</div>
+						<Img fluid={allImages["project-fp-billboard"].fluid} />
+						<Img fluid={allImages["project-fp-web"].fluid} />
 
-					<a
-						href={pdf.localFile.publicURL}
-						id="brand-guide-button"
-						target="_blank"
-						style={{
-							color: `white`,
-							display: `inline-block`,
-							background: `black`,
-							padding: `2rem`,
-							textDecoration: `none`,
-						}}
-					>
-						view full brandbook <BackIcon />
-					</a>
+						<a
+							href={pdf.localFile.publicURL}
+							id="brand-guide-button"
+							target="_blank"
+							style={{
+								color: `white`,
+								display: `inline-block`,
+								background: `black`,
+								padding: `2rem`,
+								textDecoration: `none`,
+							}}
+						>
+							view full brandbook <BackIcon />
+						</a>
+					</div>
 				</section>
 			</section>
 		</Fragment>
@@ -61,7 +58,6 @@ const FreshPicksPage = ({ data }) => {
 }
 
 export default FreshPicksPage
-
 
 export const query = graphql`
 	query freshPicksQuery {
@@ -80,24 +76,25 @@ export const query = graphql`
 						}
 					}
 					images {
+						title
 						localFile {
 							name
 							publicURL
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}
 						}
 					}
-					coverImage {
+					heroImage {
 						title
 						localFile {
+							publicURL
 							childImageSharp {
-								id
+								fluid(maxWidth: 1440, quality: 90) {
+									...GatsbyImageSharpFluid_noBase64
+								}
 							}
 						}
 					}
