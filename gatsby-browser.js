@@ -9,8 +9,6 @@
  */
 import "./src/styles/index.scss"
 
-import typography from "./src/utils/typography"
-
 /**
  * Current device
  */
