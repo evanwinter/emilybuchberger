@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
 import Seo from "../../components/seo"
@@ -40,6 +40,7 @@ const NyxPage = ({ data }) => {
 							href={pdf.localFile.publicURL}
 							id="brand-guide-button"
 							target="_blank"
+							rel="noopener noreferrer"
 							style={{
 								color: `white`,
 								display: `inline-block`,
@@ -90,10 +91,7 @@ export const query = graphql`
 						title
 						localFile {
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

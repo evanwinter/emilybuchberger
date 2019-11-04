@@ -7,7 +7,7 @@ const ProjectTile = ({ project }) => {
 	const path = `/designs/${slug}`
 	const cover = coverImage.localFile.childImageSharp.fluid
 	return (
-		<Link to={path} className="project">
+		<Link to={path} className="portfolio-item">
 			<Img fluid={cover} />
 			<div className="project-reveal">
 				<div className="project-details">

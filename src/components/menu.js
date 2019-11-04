@@ -37,7 +37,7 @@ const reducer = (state, action) => {
 				...state,
 				circle: {
 					isFullscreen: action.isFullscreen,
-				}
+				},
 			}
 		}
 		default:
@@ -62,11 +62,11 @@ const actions = {
 		type: "SET_CIRCLE_FULLSCREEN",
 		isFullscreen: false,
 	}),
-	setCurrentPage: currentPage => ({
+	setCurrentPage: (currentPage) => ({
 		type: "SET_CURRENT_PAGE",
 		currentPage: currentPage,
 	}),
-	setLastHovered: lastHovered => ({
+	setLastHovered: (lastHovered) => ({
 		type: "SET_LAST_HOVERED",
 		lastHovered: lastHovered,
 	}),
@@ -99,30 +99,23 @@ const Menu = ({ pathname }) => {
 	const _circle = useRef(undefined)
 	const _smiley = useRef(undefined)
 
-	// const [menuFullscreen, setMenuFullscreen] = useState(true)
-	// const [circleFullscreen, setCircleFullscreen] = useState(false)
-
 	const menuFullscreen = state.menu.isFullscreen
 	const circleFullscreen = state.circle.isFullscreen
 	const lastHovered = state.page.lastHovered
 
+	/**
+	 * Deactivate all menu links
+	 */
 	const deactivateLinks = () => {
 		Array.from(document.querySelectorAll(".menu-link")).forEach(
-			link => (link.dataset.active = false)
+			(link) => (link.dataset.active = false)
 		)
 	}
 
 	/**
-	 * When user clicks a menu link...
-	 * - Shrink the menu
-	 * - Activate the link
+	 * Handle clicks on "things" menu item
 	 */
-	// const handleLinkClick = event => {
-		// setMenuFullscreen(false)
-		// event.currentTarget.dataset.active = true
-	// }
-
-	const handleThingsClick = event => {
+	const handleThingsClick = (event) => {
 		if (_smiley.current.hidden) {
 			event.preventDefault()
 		}
@@ -150,7 +143,7 @@ const Menu = ({ pathname }) => {
 	 * - Mark the link as the menu's "last hovered" link
 	 * 	 (which sets the circle color)
 	 */
-	const handleLinkMouseOver = event => {
+	const handleLinkMouseOver = (event) => {
 		if (event.target.classList.contains("menu-link")) {
 			dispatch(actions.setLastHovered(event.target.id))
 			dispatch(actions.expandCircle())
@@ -161,7 +154,7 @@ const Menu = ({ pathname }) => {
 	 * When user mouses out of the menu links container...
 	 * - Shrink circle
 	 */
-	const handleLinkMouseOut = event => {
+	const handleLinkMouseOut = (event) => {
 		if (menuFullscreen) {
 			dispatch(actions.shrinkCircle())
 		}
@@ -179,22 +172,15 @@ const Menu = ({ pathname }) => {
 		dispatch(actions.shrinkCircle())
 		dispatch(actions.setLastHovered(""))
 		deactivateLinks()
-		// setMenuFullscreen(true)
-		// setCircleFullscreen(false)
-		// _menu.current.dataset.lastHovered = ""
-		// deactivateLinks()
 	}
 
 	/**
 	 * Force the menu to compact state
 	 */
-	const forceMenuCompact = currentPage => {
+	const forceMenuCompact = (currentPage) => {
 		dispatch(actions.shrinkMenu())
 		dispatch(actions.expandCircle())
 		dispatch(actions.setLastHovered(currentPage))
-		// setMenuFullscreen(false)
-		// setCircleFullscreen(true)
-		// _menu.current.dataset.lastHovered = currentPage
 		const link = document.querySelector(`#${currentPage}`)
 		if (link) {
 			link.dataset.active = true
@@ -236,18 +222,10 @@ const Menu = ({ pathname }) => {
 					onMouseOver={handleLinkMouseOver}
 					onMouseOut={handleLinkMouseOut}
 				>
-					<Link
-						className="menu-link"
-						id="about"
-						to="/about"
-					>
+					<Link className="menu-link" id="about" to="/about">
 						emily
 					</Link>
-					<Link
-						className="menu-link"
-						id="designs"
-						to="/designs"
-					>
+					<Link className="menu-link" id="designs" to="/designs">
 						{subPage ? dashToSpace(subPage) : "designs"}
 					</Link>
 					<a

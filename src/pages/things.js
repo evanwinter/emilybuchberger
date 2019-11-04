@@ -6,7 +6,7 @@ const ThingsPage = () => (
 	<Fragment>
 		<Seo title="Things" keywords={["TODO"]} />
 		<section className="things-page">
-			<img src={UnderConstruction} />
+			<img src={UnderConstruction} alt="Under Construction" />
 		</section>
 	</Fragment>
 )

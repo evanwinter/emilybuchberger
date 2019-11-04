@@ -3,6 +3,8 @@ $menu-links-height: 174px;
 
 .menu {
 
+  @include text-style-menu();
+
   position: fixed;
   overflow: hidden;
   top: 0;
@@ -13,6 +15,8 @@ $menu-links-height: 174px;
   color: $menu-color;
   background: $menu-background;
   transition: height 500ms ease;
+
+  // mix-blend-mode: exclusion;
 
   button {
     height: 2rem;
@@ -134,11 +138,10 @@ $menu-links-height: 174px;
       .circle { background: $white; }
       .menu-link { color: $black; }
     }
-    &[data-last-hovered="designs"] {
+    &[data-last-hovered="designs"],
+    &[data-last-hovered="about"] {
       background: transparent;
-      // svg { fill: $black; }
       .circle { background: transparent; }
-      // .menu-link { color: $black; }
     }
   }
 

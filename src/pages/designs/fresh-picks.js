@@ -19,7 +19,7 @@ const FreshPicksPage = ({ data }) => {
 			<section id="fresh-picks">
 				<section className="portfolio-page">
 					<div className="hero">
-						<FluidImg src={heroSrc} alt={heroTitle} />
+						<FluidImg src={heroSrc} alt={heroTitle} pad={`70%`} />
 						<section className="text-block intro">
 							<h1>{title} &mdash;</h1>
 							<h3>{subtitle}</h3>
@@ -40,6 +40,7 @@ const FreshPicksPage = ({ data }) => {
 							href={pdf.localFile.publicURL}
 							id="brand-guide-button"
 							target="_blank"
+							rel="noopener noreferrer"
 							style={{
 								color: `white`,
 								display: `inline-block`,

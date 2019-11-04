@@ -2,7 +2,6 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../components/seo"
-import Portrait from "../assets/images/Emily.jpg"
 import ReactMarkdown from 'react-markdown'
 
 const AboutPage = ({ data }) => {
@@ -25,22 +24,6 @@ const AboutPage = ({ data }) => {
 		</Fragment>
 	)
 }
-
-/*
-
-<p>
-	Welcome! I'm Emily Buchberger, a designer in Chicago.
-	I'm an ENFP according to the Myers-Briggs test and an Aries
-	according to the stars. I, of course, do not subscribe to any labels
-	and would love to get to know you more personally.
-</p>
-<p>
-	<a href="mailto:emilybuchberger@gmail.com" target="_blank" rel="noopener noreferrer">
-		emilybuchberger@gmail.com
-	</a>
-</p>
-
-*/
 
 export default AboutPage
 

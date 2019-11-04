@@ -53,38 +53,22 @@ export const fromContentful = (data, type) => {
 	return data[key].edges.map((edge) => edge.node)
 }
 
-/**
- * (TODO) Finish this
- * Stagger-in animation function
- */
-export const staggerIn = (duration = 1000, targets = []) => {
-	if (targets.length < 1) {
-		throw new Error("No targets were passed to staggerIn()")
+export const fadeIn = ({ targets, duration = 1000, delay = 0 }) => {
+
+	if (!targets) {
+		throw new Error("No targets provide for animate function")
 	}
 
 	const options = {
 		targets,
 		duration,
-		easing: "easeOutExpo",
-	}
-
-	const tl = anime.timeline(options)
-
-	return tl
-}
-
-export const fadeIn = (targets = "") => {
-	console.log("fading in", targets)
-	const options = {
-		targets,
-		duration: 2000,
-		delay: 750,
+		delay,
 		easing: "easeOutExpo",
 		opacity: 1,
-		// translateX: 5,
 		complete: function(anim) {
-			anim.animatables[0].target && anim.animatables[0].target.classList.remove("fades-in")
-		}
+			anim.animatables[0].target &&
+				anim.animatables[0].target.classList.remove("fades-in")
+		},
 	}
 	anime(options)
 }

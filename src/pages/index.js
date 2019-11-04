@@ -1,5 +1,4 @@
 import React, { Fragment } from "react"
-import { Link } from "gatsby"
 import Seo from "../components/seo"
 
 const IndexPage = () => (

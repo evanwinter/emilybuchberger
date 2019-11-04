@@ -1,0 +1,32 @@
+@mixin text-style-heading {
+  font-family: 'GT America Expanded';
+  font-weight: 500;
+}
+
+@mixin text-style-subheading {
+  font-family: 'GT America';
+  font-weight: 200;
+}
+
+@mixin text-style-default {
+  font-family: 'GT America';
+  font-weight: 400;
+}
+
+@mixin text-style-thin {
+  font-weight: 200;
+}
+
+@mixin text-style-menu {
+  font-family: 'GT America Expanded';
+  font-weight: 600;
+}
+
+@mixin row-margins {
+	&:first-child {
+		margin-left: 0;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}

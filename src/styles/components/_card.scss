@@ -1,0 +1,9 @@
+.card {
+	box-shadow: rgba(black, 0.75) 0px 10px 30px -15px;
+	border-radius: 5px;
+	margin: 1rem;
+
+	@media (min-width: $breakpoint-md) {
+		@include row-margins();
+	}
+}

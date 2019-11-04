@@ -60,10 +60,7 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}
@@ -73,10 +70,7 @@ export const query = graphql`
 						title
 						localFile {
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

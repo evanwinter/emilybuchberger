@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
 import { prepareImages, fromContentful } from "../../utils"
@@ -57,10 +57,7 @@ export const query = graphql`
 						localFile {
 							name
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}
@@ -70,10 +67,7 @@ export const query = graphql`
 						title
 						localFile {
 							childImageSharp {
-								fluid(
-									maxWidth: 1440,
-									quality: 90
-								) {
+								fluid(maxWidth: 1440, quality: 90) {
 									...GatsbyImageSharpFluid_noBase64
 								}
 							}

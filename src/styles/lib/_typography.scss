@@ -1,0 +1,11 @@
+.heading {
+	@include text-style-heading();
+}
+
+.subheading {
+	@include text-style-subheading();
+}
+
+span, p {
+	@include text-style-default();
+}

@@ -1,0 +1,88 @@
+html.mobile, html.tablet {
+  @media (max-width: $breakpoint-md - 1) {
+    .portfolio-item {
+      text-decoration: none;
+    }
+
+    .project-reveal {
+      position: relative;
+      margin: 0.25rem 0 0.75rem 0;
+      opacity: 1;
+      justify-content: flex-start;
+    }
+
+    .project-details {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .emdash {
+        display: none;
+      }
+    }
+
+    .title, .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .project-details {
+    .title, .subtitle {
+      transform: translateY(0);
+    }
+  }
+}
+
+.portfolio-item {
+  position: relative;
+
+  .project-reveal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 500ms ease, background 500ms ease;
+
+    &:hover {
+      opacity: 1;
+      background: $white;
+
+      .project-details {
+        .title, .subtitle {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  .project-details {
+    z-index: 1;
+
+    .title, .subtitle {
+      margin: 0;
+      transform: translateY(1.5rem);
+      transition: transform 500ms ease;
+    }
+
+    .title {
+      @include text-style-heading();
+      color: $black;
+    }
+
+    .subtitle {
+      @include text-style-subheading();
+      color: $gray;
+      transition-delay: 100ms;
+    }
+  }
+}
+
+.portfolio-page {}
+
+.portfolio-wrapper {
+  margin-top: 6rem;
+}
