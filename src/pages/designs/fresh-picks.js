@@ -3,7 +3,8 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
 import Seo from "../../components/seo"
-import FluidImg from "../../components/fluid-img"
+import { FluidHero } from "../../components/hero"
+import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const FreshPicksPage = ({ data }) => {
@@ -17,39 +18,48 @@ const FreshPicksPage = ({ data }) => {
 		<Fragment>
 			<Seo title="Fresh Picks" keywords={["TODO"]} />
 			<section id="fresh-picks">
-				<section className="portfolio-page">
+				<section className="project-page">
 					<div className="hero">
-						<FluidImg src={heroSrc} alt={heroTitle} pad={`70%`} />
+						<FluidHero src={heroSrc} alt={heroTitle} pad={`70%`} />
+					</div>
+					<div className="project-wrapper">
+
 						<section className="text-block intro">
 							<h1>{title} &mdash;</h1>
 							<h3>{subtitle}</h3>
 							<p>{summary.summary}</p>
 						</section>
-					</div>
-					<div className="portfolio-wrapper">
-						<Img fluid={allImages["project-fp-magazine"].fluid} />
-						<Img fluid={allImages["project-fp-packing-slip"].fluid} />
-						<div className="grid two-thirds-one-third">
-							<Img fluid={allImages["project-fp-print"].fluid} />
-							<Img fluid={allImages["project-fp-bag"].fluid} />
-						</div>
-						<Img fluid={allImages["project-fp-billboard"].fluid} />
-						<Img fluid={allImages["project-fp-web"].fluid} />
+
+						<ProjectRow>
+							<Img fluid={allImages["project-fp-magazine"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-fp-packing-slip"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<div className="grid two-thirds-one-third">
+								<Img fluid={allImages["project-fp-print"].fluid} />
+								<Img fluid={allImages["project-fp-bag"].fluid} />
+							</div>
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-fp-billboard"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-fp-web"].fluid} />
+						</ProjectRow>
 
 						<a
 							href={pdf.localFile.publicURL}
 							id="brand-guide-button"
 							target="_blank"
 							rel="noopener noreferrer"
-							style={{
-								color: `white`,
-								display: `inline-block`,
-								background: `black`,
-								padding: `2rem`,
-								textDecoration: `none`,
-							}}
 						>
-							view full brandbook <BackIcon />
+							view full brandbook
 						</a>
 					</div>
 				</section>

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import Seo from "../../components/seo"
-import ProjectsGrid from "../../components/projects-grid"
+import PortfolioGrid from "../../components/portfolio-grid"
 
 const DesignsPage = () => {
 	return (
@@ -12,7 +12,7 @@ const DesignsPage = () => {
 			<section className="portfolio-page">
 				<div className="portfolio-wrapper">
 					<div className="grid two">
-						<ProjectsGrid />
+						<PortfolioGrid />
 					</div>
 				</div>
 			</section>

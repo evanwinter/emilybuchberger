@@ -21,12 +21,18 @@ const getTransitionStyles = {
 }
 
 class Transition extends React.PureComponent {
+
+  scrollToTop() {
+    window.scrollTo(0,0)
+  }
+
   render() {
     const { children, location } = this.props
     return (
       <TransitionGroup>
         <ReactTransition
           key={location.pathname}
+          onExited={this.scrollToTop}
           timeout={{
             enter: timeout,
             exit: timeout,

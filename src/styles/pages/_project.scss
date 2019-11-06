@@ -12,71 +12,31 @@
     position: relative;
     overflow: hidden;
   }
-
-  .intro {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    min-width: min-content;
-    width: 30%;
-    padding: 2rem;
-    margin: 2rem;
-    color: black;
-    background: $white;
-    box-shadow: rgba($black, 0.75) 0px 10px 30px -15px;
-    border-radius: 5px;
-
-    h1 {
-      @include text-style-heading;
-
-      margin: 0;
-    }
-
-    h3 {
-      margin-top: 0.25rem;
-    }
-
-    h3, p {
-      // color: #555;
-      font-weight: 200;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: $breakpoint-md) {
-      width: 100%;
-      margin: 0;
-      box-shadow: rgba($black, 0.75) 0px -5px 15px -15px;
-
-      font-size: 0.75rem;
-    }
-  }
 }
 
-#brand-guide-button {
-  svg {
-    transition: transform $duration ease, opacity $duration ease;
-    display: inline;
-    width: 1rem;
-    height: 1rem;
-    fill: white;
-    transform: rotate(180deg);
+.intro {
+  max-width: 500px;
+  margin: 2rem 0 5rem;
+
+
+  h1 {
+    @include text-style-heading;
+
+    font-size: 1.25rem;
+    margin: 0;
   }
 
-  @media (min-width: 767px) {
-    svg {
-      opacity: 0;
-      transform: rotate(180deg) translateX(0.5rem);
-    }
+  h3 {
+    font-weight: 200;
+    margin-top: 0.25rem;
+  }
 
-    &:hover {
-      svg {
-        opacity: 1;
-        transform: rotate(180deg) translateX(0);
-      }
-    }
+  p {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    margin: 0rem 0 3rem;
   }
 }
 
@@ -86,12 +46,6 @@
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 2rem;
-}
-
-.project-page {
-  .grid {
-    margin: 3rem 0;
-  }
 }
 
 .grid-item {
@@ -110,20 +64,20 @@
   }
 }
 
+.project-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .project-page {
 
-  .project-wrapper {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-
-    > .gatsby-image-wrapper {
-      margin: 1rem 0;
-    }
-  }
-
-  .gatsby-image-wrapper img {
-    max-height: 100vh;
+  .ProjectRow {
+    margin: 1rem 0;
   }
 
   .grid {
@@ -135,32 +89,6 @@
 
     .gatsby-image-wrapper {
       margin: 0;
-    }
-  }
-}
-
-.gatsby-image-wrapper.regular-image {
-  position: relative;
-
-  img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  &.contain {
-    img {
-      object-fit: contain;
-    }
-  }
-
-  &.cover {
-    img {
-      object-fit: cover;
     }
   }
 }

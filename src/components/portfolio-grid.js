@@ -1,9 +1,9 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import ProjectTile from "./project-tile"
+import PortfolioTile from "./portfolio-tile"
 import { fromContentful } from "../utils"
 
-const ProjectsGrid = () => {
+const PortfolioGrid = () => {
 	const data = useStaticQuery(graphql`
 		query designsQuery {
 			allContentfulPortfolio {
@@ -33,11 +33,11 @@ const ProjectsGrid = () => {
 			}
 		}
 	`)
-	const portfolios = fromContentful(data, "portfolio")
-	const { projects } = portfolios[0]
+	const [portfolio] = fromContentful(data, "portfolio")
+	const { projects } = portfolio
 	return projects.map((project) => (
-		<ProjectTile project={project} key={project.id} />
+		<PortfolioTile project={project} key={project.id} />
 	))
 }
 
-export default ProjectsGrid
+export default PortfolioGrid

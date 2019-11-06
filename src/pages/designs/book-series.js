@@ -1,7 +1,9 @@
-import React, { Fragment } from "react"
+import React, { useState, Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
+import { Hero } from "../../components/hero"
+import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const BookSeriesPage = ({ data }) => {
@@ -14,27 +16,42 @@ const BookSeriesPage = ({ data }) => {
 		<Fragment>
 			<Seo title="Book Series" keywords={["TODO"]} />
 			<section id="book-series">
-				<section className="portfolio-page">
-					<div className="hero">
-						<Img fluid={hero.fluid} />
+				<section className="project-page">
+					<Hero fluid={hero.fluid} />
+
+					<div className="project-wrapper">
 						<section className="text-block intro">
 							<h1>{title} &mdash;</h1>
 							<h3>{subtitle}</h3>
 							<p>{summary.summary}</p>
 						</section>
-					</div>
-					<div className="portfolio-wrapper">
-						<Img fluid={allImages["project-book-series-2"].fluid} />
-						<Img fluid={allImages["project-book-series-3"].fluid} />
 
-						<div className="grid" style={{ marginTop: `1rem` }}>
-							<Img fluid={allImages["project-book-series-4"].fluid} />
-							<Img fluid={allImages["project-book-series-5"].fluid} />
-						</div>
+						<ProjectRow>
+							<Img fluid={allImages["project-book-series-2"].fluid} />
+						</ProjectRow>
 
-						<Img fluid={allImages["project-book-series-6"].fluid} />
-						<Img fluid={allImages["project-book-series-7"].fluid} />
-						<Img fluid={allImages["project-book-series-8"].fluid} />
+						<ProjectRow>
+							<Img fluid={allImages["project-book-series-3"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<div className="grid">
+								<Img fluid={allImages["project-book-series-4"].fluid} />
+								<Img fluid={allImages["project-book-series-5"].fluid} />
+							</div>
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-book-series-6"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-book-series-7"].fluid} />
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-book-series-8"].fluid} />
+						</ProjectRow>
 					</div>
 				</section>
 			</section>

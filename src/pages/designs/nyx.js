@@ -2,11 +2,13 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import BackIcon from "../../assets/icons/back.svg"
+import { Hero } from "../../components/hero"
+import ProjectRow from "../../components/project-row"
 import Seo from "../../components/seo"
 import { prepareImages, fromContentful } from "../../utils"
 
 const NyxPage = ({ data }) => {
-	const [pageData] = fromContentful(data, 'project')
+	const [pageData] = fromContentful(data, "project")
 	const { images, pdf, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
@@ -15,41 +17,56 @@ const NyxPage = ({ data }) => {
 		<Fragment>
 			<Seo title="Nyx" keywords={["TODO"]} />
 			<section id="nyx">
-				<section className="portfolio-page">
+				<section className="project-page">
 					<div className="hero">
-						<Img fluid={hero.fluid} />
+						<Hero fluid={hero.fluid} />
+					</div>
+					<div className="project-wrapper">
 						<section className="text-block intro">
 							<h1>{title} &mdash;</h1>
 							<h3>{subtitle}</h3>
 							<p>{summary.summary}</p>
 						</section>
-					</div>
-					<div className="portfolio-wrapper">
-						<Img fluid={allImages["project-nyx-2"].fluid} />
-						<Img fluid={allImages["project-nyx-3"].fluid} />
-						<Img fluid={allImages["project-nyx-4"].fluid} />
 
-						<div className="grid" style={{ marginTop: `1rem` }}>
-							<Img fluid={allImages["project-nyx-5"].fluid} />
-							<Img fluid={allImages["project-nyx-6"].fluid} />
-						</div>
+						<ProjectRow>
+							<Img
+								fluid={allImages["project-nyx-2"].fluid}
+								style={{ maxHeight: "100vh" }}
+							/>
+						</ProjectRow>
 
-						<Img fluid={allImages["project-nyx-7"].fluid} />
+						<ProjectRow>
+							<Img
+								fluid={allImages["project-nyx-3"].fluid}
+								style={{ maxHeight: "100vh" }}
+							/>
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img
+								fluid={allImages["project-nyx-4"].fluid}
+								style={{ maxHeight: "100vh" }}
+							/>
+						</ProjectRow>
+
+						<ProjectRow>
+							<div className="grid" style={{ marginTop: `1rem` }}>
+								<Img fluid={allImages["project-nyx-5"].fluid} />
+								<Img fluid={allImages["project-nyx-6"].fluid} />
+							</div>
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["project-nyx-7"].fluid} />
+						</ProjectRow>
 
 						<a
 							href={pdf.localFile.publicURL}
 							id="brand-guide-button"
 							target="_blank"
 							rel="noopener noreferrer"
-							style={{
-								color: `white`,
-								display: `inline-block`,
-								background: `black`,
-								padding: `2rem`,
-								textDecoration: `none`,
-							}}
 						>
-							view full brandbook <BackIcon />
+							view full brandbook
 						</a>
 					</div>
 				</section>

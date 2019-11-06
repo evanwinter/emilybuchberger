@@ -16,6 +16,15 @@ $menu-links-height: 174px;
   background: $menu-background;
   transition: height 500ms ease;
 
+  &[data-menu-showing="false"] {
+    .back-button {
+      opacity: 0;
+    }
+    .menu-link[data-active="true"] {
+      opacity: 0;
+    }
+  }
+
   // mix-blend-mode: exclusion;
 
   button {
@@ -37,9 +46,11 @@ $menu-links-height: 174px;
   }
 
   .back-button {
+    opacity: 1;
     &:focus {
       outline: none;
     }
+    transition: opacity 500ms ease;
   }
 
   // Menu links are stacked and centered
@@ -53,7 +64,6 @@ $menu-links-height: 174px;
   }
 
   .menu-link {
-
     position: absolute;
     padding: 0.25rem 0;
 

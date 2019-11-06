@@ -1,76 +1,12 @@
-import React, { useRef, useEffect, useReducer } from "react"
+import React, { useState, useRef, useEffect, useReducer } from "react"
 import { Link, navigate } from "gatsby"
 import BackIcon from "../assets/icons/back.svg"
 import SmileyIcon from "../assets/icons/smiley.svg"
 import { dashToSpace } from "../utils"
 
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "SET_CURRENT_PAGE": {
-			return {
-				...state,
-				page: {
-					...state.page,
-					current: action.current,
-				},
-			}
-		}
-		case "SET_LAST_HOVERED": {
-			return {
-				...state,
-				page: {
-					...state.page,
-					lastHovered: action.lastHovered,
-				},
-			}
-		}
-		case "SET_MENU_FULLSCREEN": {
-			return {
-				...state,
-				menu: {
-					isFullscreen: action.isFullscreen,
-				},
-			}
-		}
-		case "SET_CIRCLE_FULLSCREEN": {
-			return {
-				...state,
-				circle: {
-					isFullscreen: action.isFullscreen,
-				},
-			}
-		}
-		default:
-			throw new Error()
-	}
-}
-
-const actions = {
-	expandMenu: () => ({
-		type: "SET_MENU_FULLSCREEN",
-		isFullscreen: true,
-	}),
-	shrinkMenu: () => ({
-		type: "SET_MENU_FULLSCREEN",
-		isFullscreen: false,
-	}),
-	expandCircle: () => ({
-		type: "SET_CIRCLE_FULLSCREEN",
-		isFullscreen: true,
-	}),
-	shrinkCircle: () => ({
-		type: "SET_CIRCLE_FULLSCREEN",
-		isFullscreen: false,
-	}),
-	setCurrentPage: (currentPage) => ({
-		type: "SET_CURRENT_PAGE",
-		currentPage: currentPage,
-	}),
-	setLastHovered: (lastHovered) => ({
-		type: "SET_LAST_HOVERED",
-		lastHovered: lastHovered,
-	}),
-}
+import { useScrollPosition } from "../hooks/useScrollPosition"
+import { menuReducer } from "../state/reducers"
+import { menuActions } from "../state/actions"
 
 const initialState = {
 	page: {
@@ -90,9 +26,8 @@ const Menu = ({ pathname }) => {
 	const [, page, subPage] = [...pathname.split("/")]
 
 	// State management
-	const [state, dispatch] = useReducer(reducer, initialState)
-
-	console.log(state)
+	const [state, dispatch] = useReducer(menuReducer, initialState)
+	const [menuShowing, setMenuShowing] = useState(true)
 
 	// Define elements
 	const _menu = useRef(undefined)
@@ -102,6 +37,13 @@ const Menu = ({ pathname }) => {
 	const menuFullscreen = state.menu.isFullscreen
 	const circleFullscreen = state.circle.isFullscreen
 	const lastHovered = state.page.lastHovered
+
+	useScrollPosition(({ prevPos, currPos }) => {
+	  const isShow = currPos.y > prevPos.y || currPos.y > -50
+  	if (page === "designs") {
+  		if (isShow !== menuShowing) setMenuShowing(isShow)
+  	}
+	}, [menuShowing, subPage])
 
 	/**
 	 * Deactivate all menu links
@@ -145,8 +87,8 @@ const Menu = ({ pathname }) => {
 	 */
 	const handleLinkMouseOver = (event) => {
 		if (event.target.classList.contains("menu-link")) {
-			dispatch(actions.setLastHovered(event.target.id))
-			dispatch(actions.expandCircle())
+			dispatch(menuActions.setLastHovered(event.target.id))
+			dispatch(menuActions.expandCircle())
 		}
 	}
 
@@ -156,7 +98,7 @@ const Menu = ({ pathname }) => {
 	 */
 	const handleLinkMouseOut = (event) => {
 		if (menuFullscreen) {
-			dispatch(actions.shrinkCircle())
+			dispatch(menuActions.shrinkCircle())
 		}
 	}
 
@@ -168,9 +110,9 @@ const Menu = ({ pathname }) => {
 	 * - Unset
 	 */
 	const forceMenuFullscreen = () => {
-		dispatch(actions.expandMenu())
-		dispatch(actions.shrinkCircle())
-		dispatch(actions.setLastHovered(""))
+		dispatch(menuActions.expandMenu())
+		dispatch(menuActions.shrinkCircle())
+		dispatch(menuActions.setLastHovered(""))
 		deactivateLinks()
 	}
 
@@ -178,9 +120,9 @@ const Menu = ({ pathname }) => {
 	 * Force the menu to compact state
 	 */
 	const forceMenuCompact = (currentPage) => {
-		dispatch(actions.shrinkMenu())
-		dispatch(actions.expandCircle())
-		dispatch(actions.setLastHovered(currentPage))
+		dispatch(menuActions.shrinkMenu())
+		dispatch(menuActions.expandCircle())
+		dispatch(menuActions.setLastHovered(currentPage))
 		const link = document.querySelector(`#${currentPage}`)
 		if (link) {
 			link.dataset.active = true
@@ -208,6 +150,7 @@ const Menu = ({ pathname }) => {
 			data-circle-fullscreen={circleFullscreen}
 			data-menu-fullscreen={menuFullscreen}
 			data-last-hovered={lastHovered}
+			data-menu-showing={menuShowing}
 		>
 			<div>
 				{!menuFullscreen ? (

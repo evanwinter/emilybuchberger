@@ -8,12 +8,13 @@
   font-weight: 200;
 }
 
-@mixin text-style-default {
+@mixin text-style-regular {
   font-family: 'GT America';
   font-weight: 400;
 }
 
 @mixin text-style-thin {
+  font-family: 'GT America';
   font-weight: 200;
 }
 

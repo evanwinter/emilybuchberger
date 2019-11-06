@@ -4,14 +4,14 @@ html.mobile, html.tablet {
       text-decoration: none;
     }
 
-    .project-reveal {
+    .portfolio-item-reveal {
       position: relative;
       margin: 0.25rem 0 0.75rem 0;
       opacity: 1;
       justify-content: flex-start;
     }
 
-    .project-details {
+    .portfolio-item-details {
       display: flex;
       width: 100%;
       justify-content: space-between;
@@ -21,13 +21,13 @@ html.mobile, html.tablet {
       }
     }
 
-    .title, .subtitle {
+    .portfolio-item-title, .portfolio-item-subtitle {
       font-size: 1rem;
     }
   }
 
-  .project-details {
-    .title, .subtitle {
+  .portfolio-item-details {
+    .portfolio-item-title, .portfolio-item-subtitle {
       transform: translateY(0);
     }
   }
@@ -36,7 +36,7 @@ html.mobile, html.tablet {
 .portfolio-item {
   position: relative;
 
-  .project-reveal {
+  .portfolio-item-reveal {
     position: absolute;
     top: 0;
     width: 100%;
@@ -51,29 +51,29 @@ html.mobile, html.tablet {
       opacity: 1;
       background: $white;
 
-      .project-details {
-        .title, .subtitle {
+      .portfolio-item-details {
+        .portfolio-item-title, .portfolio-item-subtitle {
           transform: translateY(0);
         }
       }
     }
   }
 
-  .project-details {
+  .portfolio-item-details {
     z-index: 1;
 
-    .title, .subtitle {
+    .portfolio-item-title, .portfolio-item-subtitle {
       margin: 0;
       transform: translateY(1.5rem);
       transition: transform 500ms ease;
     }
 
-    .title {
+    .portfolio-item-title {
       @include text-style-heading();
       color: $black;
     }
 
-    .subtitle {
+    .portfolio-item-subtitle {
       @include text-style-subheading();
       color: $gray;
       transition-delay: 100ms;

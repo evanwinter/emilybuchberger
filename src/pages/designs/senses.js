@@ -2,10 +2,12 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"
+import ProjectRow from "../../components/project-row"
+import { Hero } from "../../components/hero"
 import { prepareImages, fromContentful } from "../../utils"
 
 const SensesPage = ({ data }) => {
-	const [pageData] = fromContentful(data, 'project')
+	const [pageData] = fromContentful(data, "project")
 
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
@@ -15,18 +17,20 @@ const SensesPage = ({ data }) => {
 		<Fragment>
 			<Seo title="Senses" keywords={["TODO"]} />
 			<section id="senses">
-				<section className="portfolio-page">
-					<div className="hero">
-						<Img fluid={hero.fluid} />
+				<section className="project-page">
+					<Hero fluid={hero.fluid} />
+					<div className="project-wrapper">
 						<section className="text-block intro">
 							<h1>{title} &mdash;</h1>
 							<h3>{subtitle}</h3>
 							<p>{summary.summary}</p>
 						</section>
-					</div>
-					<div className="portfolio-wrapper">
-						<Img fluid={allImages["project-senses-2"].fluid} />
-						<Img fluid={allImages["project-senses-3"].fluid} />
+						<ProjectRow>
+							<Img fluid={allImages["project-senses-2"].fluid} />
+						</ProjectRow>
+						<ProjectRow>
+							<Img fluid={allImages["project-senses-3"].fluid} />
+						</ProjectRow>
 					</div>
 				</section>
 			</section>
