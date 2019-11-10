@@ -94,7 +94,7 @@ const BopPage = ({ data }) => {
 								<div className="grid-item">
 									<Img
 										fluid={allImages["BOP-zoom-nowplaying"].fluid}
-										style={{ maxHeight: "80vh" }}
+										style={{ maxHeight: "70vh" }}
 										imgStyle={{ objectFit: "contain" }}
 									/>
 								</div>
@@ -142,7 +142,7 @@ const BopPage = ({ data }) => {
 									<FluidImg
 										pad={"131%"}
 										fit={"contain"}
-										style={{ maxHeight: "80vh" }}
+										style={{ maxHeight: "70vh" }}
 										src={allImages["BOP-playlist"].fluid}
 										alt={allImages["BOP-playlist"].title}
 									/>
