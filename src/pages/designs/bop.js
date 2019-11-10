@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect } from "react"
+import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Hero } from "../../components/hero"
 import Seo from "../../components/seo"
 import FluidImg from "../../components/fluid-img"
 import ProjectRow from "../../components/project-row"
-import { prepareImages, fromContentful, fadeIn } from "../../utils"
+import { prepareImages, fromContentful } from "../../utils"
 
 const BopPage = ({ data }) => {
 	const [pageData] = fromContentful(data, "project")
@@ -27,44 +27,61 @@ const BopPage = ({ data }) => {
 							<p>{summary.summary}</p>
 						</section>
 
-						<ProjectRow>
+						<ProjectRow margin={"5rem"}>
 							<h3 className="portfolio-center-heading">User Interviews</h3>
 							<div className="grid three">
-								<div className="card">
-									<Img fluid={allImages["BOP-graph-1"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-graph-1"].fluid} />
+									</div>
 								</div>
-								<div className="card">
-									<Img fluid={allImages["BOP-graph-2"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-graph-2"].fluid} />
+									</div>
 								</div>
-								<div className="card">
-									<Img fluid={allImages["BOP-graph-3"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-graph-3"].fluid} />
+									</div>
 								</div>
 							</div>
 						</ProjectRow>
 
-						<ProjectRow>
-							<h3 className="portfolio-center-heading">User Personas</h3>
+						<ProjectRow margin={"5rem"}>
+							<h3
+								className="portfolio-center-heading"
+								style={{ marginTop: `5rem` }}
+							>
+								User Personas
+							</h3>
 							<div className="grid three">
-								<div className="card">
-									<Img fluid={allImages["BOP-persona-1"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-persona-1"].fluid} />
+									</div>
 								</div>
-								<div className="card">
-									<Img fluid={allImages["BOP-persona-2"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-persona-2"].fluid} />
+									</div>
 								</div>
-								<div className="card">
-									<Img fluid={allImages["BOP-persona-3"].fluid} />
+								<div className="grid-item">
+									<div className="card">
+										<Img fluid={allImages["BOP-persona-3"].fluid} />
+									</div>
 								</div>
 							</div>
 						</ProjectRow>
 
-						<ProjectRow>
+						<ProjectRow margin={"5rem"}>
 							<Img
 								fluid={allImages["BOP-styleguide"].fluid}
 								style={{ maxHeight: "100vh" }}
 							/>
 						</ProjectRow>
 
-						<ProjectRow>
+						<ProjectRow margin={"5rem"}>
 							<FluidImg
 								src={allImages["BOP-joinparty"].fluid}
 								pad={"131%"}
@@ -73,12 +90,12 @@ const BopPage = ({ data }) => {
 							/>
 						</ProjectRow>
 
-						<ProjectRow>
+						<ProjectRow margin={"5rem"}>
 							<div className="grid two">
 								<div className="grid-item">
 									<Img
 										fluid={allImages["BOP-zoom-nowplaying"].fluid}
-										style={{ maxHeight: "100vh" }}
+										style={{ maxHeight: "80vh" }}
 										imgStyle={{ objectFit: "contain" }}
 									/>
 								</div>
@@ -86,20 +103,29 @@ const BopPage = ({ data }) => {
 									<div className="content-wrapper">
 										<h3>User Problems:</h3>
 										<p>
-											not everyone can easily contribute music in group settings
+											It’s difficult for everyone to contribute to music in
+											group settings.
 										</p>
-										<p>not easy to hear a song and add it to music</p>
+										<p>
+											When you hear a song you like it takes multiple steps to
+											find out what it is and then add it to your library.
+										</p>
 										<h3>Solutions:</h3>
 										<p>
-											allow everyone to contribute to the party favorite songs
-											to save to your library
+											Everyone is able to add their music to the party through
+											an easy to use interface.
+										</p>
+										<p>
+											When you hear a song you enjoy, you can open the app to
+											see what’s playing. Once you favorite that song it
+											automatically adds it to your song library.
 										</p>
 									</div>
 								</div>
 							</div>
 						</ProjectRow>
 
-						<ProjectRow>
+						<ProjectRow margin={"5rem"}>
 							<div className="grid two">
 								<div className="grid-item copy">
 									<div className="content-wrapper">
@@ -117,11 +143,16 @@ const BopPage = ({ data }) => {
 									<FluidImg
 										pad={"131%"}
 										fit={"contain"}
+										style={{ maxHeight: "80vh" }}
 										src={allImages["BOP-playlist"].fluid}
 										alt={allImages["BOP-playlist"].title}
 									/>
 								</div>
 							</div>
+						</ProjectRow>
+
+						<ProjectRow>
+							<Img fluid={allImages["BOP-flow"].fluid} />
 						</ProjectRow>
 					</div>
 				</section>

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import BackIcon from "../../assets/icons/back.svg"
 import Seo from "../../components/seo"
 import { FluidHero } from "../../components/hero"
 import ProjectRow from "../../components/project-row"
