@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 
 const PortfolioTile = ({ project }) => {
-	const { slug, id, coverImage, title, subtitle } = project
+	const { slug, coverImage, title, subtitle } = project
 	const path = `/designs/${slug}`
 	const cover = coverImage.localFile.childImageSharp.fluid
 	return (

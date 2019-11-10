@@ -12,6 +12,7 @@ import "./src/styles/index.scss"
 /**
  * Current device
  */
+// eslint-disable-next-line
 import device from "current-device"
 
 /**

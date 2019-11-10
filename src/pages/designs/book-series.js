@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react"
+import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Seo from "../../components/seo"

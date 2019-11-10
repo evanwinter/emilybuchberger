@@ -85,8 +85,7 @@ const BopPage = ({ data }) => {
 							<FluidImg
 								src={allImages["BOP-joinparty"].fluid}
 								pad={"131%"}
-								fit={"contain"}
-								alt={allImages["BOP-playlist"].title}
+								alt={allImages["BOP-joinparty"].title}
 							/>
 						</ProjectRow>
 
