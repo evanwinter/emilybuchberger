@@ -44,7 +44,12 @@ button {
 }
 
 a {
-  color: $black;
+  color: $link-color;
+  font-weight: 400;
+
+  &:hover {
+    color: $link-color-hover;
+  }
 }
 
 .grid {
@@ -79,54 +84,9 @@ img {
 }
 
 .page-container {
-  font-family: "GT America";
-  font-weight: 200;
-  font-size: 1.1rem;
-  width: 85%;
-  max-width: 768px;
-  margin: 0 auto;
-
-  h1 {
-    font-weight: 300;
-  }
-
-  a {
-    color: $blue;
-    text-decoration: none;
-    font-weight: 400;
-    transition: color ($duration / 3) ease;
-
-    &:hover {
-      color: rgba($blue, 0.75);
-    }
-  }
-
-  &#about-page {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   @media (min-width: $breakpoint-sm) {
     &:not(#about-page) {
       margin-top: calc(30vh - 109px);
-    }
-  }
-}
-
-.about-layout {
-  @media (min-width: $breakpoint-sm) {
-    display: flex;
-    align-items: center;
-
-    .left {
-      flex: 1;
-      margin-right: 2rem;
-    }
-
-    .right {
-      flex: 1;
     }
   }
 }
@@ -148,4 +108,11 @@ img {
 .fades-in {
   opacity: 0;
   // transition: opacity 500ms ease;
+}
+
+.icon-link svg {
+  width: 1rem;
+  margin-left: 4px;
+  padding-bottom: 4px;
+  vertical-align: middle;
 }

@@ -153,13 +153,9 @@ const Menu = ({ pathname }) => {
 			data-menu-showing={menuShowing}
 		>
 			<div>
-				{!menuFullscreen ? (
-					<button className="back-button" onClick={handleBackClick}>
-						<BackIcon />
-					</button>
-				) : (
-					""
-				)}
+				<button className="back-button" onClick={handleBackClick}>
+					<BackIcon />
+				</button>
 				<div
 					className="menu-links"
 					onMouseOver={handleLinkMouseOver}

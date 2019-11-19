@@ -16,6 +16,7 @@ $menu-links-height: 174px;
   background: $menu-background;
   transition: height 500ms ease;
 
+  &[data-menu-fullscreen="true"],
   &[data-menu-showing="false"] {
     .back-button {
       opacity: 0;
@@ -25,9 +26,8 @@ $menu-links-height: 174px;
     }
   }
 
-  // mix-blend-mode: exclusion;
-
   button {
+    opacity: 0;
     height: 2rem;
     position: absolute;
     top: 2rem;
@@ -66,6 +66,7 @@ $menu-links-height: 174px;
   .menu-link {
     position: absolute;
     padding: 0.25rem 0;
+    // font-weight: 200;
 
     &:nth-child(1) {
       margin-top: 0rem;
@@ -77,12 +78,13 @@ $menu-links-height: 174px;
       margin-top: 8rem;
     }
 
-    color: $white;
+    color: $menu-color;
     text-decoration: none;
+    font-weight: 400;
     font-size: 3rem;
     opacity: 1;
     display: block;
-    transition: color 500ms ease, opacity 500ms ease, font-size 500ms ease, margin-top 500ms ease;
+    transition: color 500ms ease, opacity 500ms ease, font-size 500ms ease, margin-top 500ms ease, font-weight 500ms ease;
   }
 
   // menu "compact" mode
@@ -124,18 +126,32 @@ $menu-links-height: 174px;
   // If currently hovering over the menu...
   &[data-circle-fullscreen="true"] {
     &[data-last-hovered="about"] {
+      .menu-link { color: $designs-background; }
+      .menu-link[data-active="true"] {
+        color: $black;
+        font-weight: 600;
+      }
       .menu-link:not(#about) {
         opacity: 0;
       }
     }
     &[data-last-hovered="designs"] {
-      .menu-link { color: $black; }
+      .menu-link { color: $about-background; }
+      .menu-link[data-active="true"] {
+        color: $black;
+        font-weight: 600;
+      }
       svg { fill: $black; }
       .menu-link:not(#designs) {
         opacity: 0;
       }
     }
     &[data-last-hovered="things"] {
+      .menu-link { color: $designs-background; }
+      .menu-link[data-active="true"] {
+        color: $black;
+        font-weight: 600;
+      }
       .menu-link:not(#things) {
         opacity: 0;
       }
@@ -152,6 +168,12 @@ $menu-links-height: 174px;
     &[data-last-hovered="about"] {
       background: transparent;
       .circle { background: transparent; }
+    }
+  }
+
+  &[data-circle-fullscreen="false"] {
+    .smiley-icon {
+      opacity: 0;
     }
   }
 
@@ -175,13 +197,15 @@ $menu-links-height: 174px;
   }
 
   .smiley-icon {
+    opacity: 1;
     svg {
-      width: 4rem;
+      width: 5rem;
       transform: rotate(15deg);
     }
     position: absolute;
-    top: 0.5rem;
+    top: 0.65rem;
     left: 50%;
+    pointer-events: none;
   }
 
 }

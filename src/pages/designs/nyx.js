@@ -2,6 +2,7 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Hero } from "../../components/hero"
+import ExternalLink from "../../assets/icons/external-link.svg"
 import ProjectRow from "../../components/project-row"
 import Seo from "../../components/seo"
 import { prepareImages, fromContentful } from "../../utils"
@@ -61,11 +62,12 @@ const NyxPage = ({ data }) => {
 
 						<a
 							href={pdf.localFile.publicURL}
-							id="brand-guide-button"
+							className="icon-link"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							view full brandbook
+							<ExternalLink />
 						</a>
 					</div>
 				</section>

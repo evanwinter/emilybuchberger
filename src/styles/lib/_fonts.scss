@@ -1,4 +1,11 @@
 @font-face {
+    font-family: 'GT America Expanded Thin';
+    src: url('../assets/fonts/GT-America-Expanded-Thin.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'GT America Mono';
     src: url('../assets/fonts/GTAmericaMono-Light.woff2') format('woff2'),
         url('../assets/fonts/GTAmericaMono-Light.woff') format('woff');

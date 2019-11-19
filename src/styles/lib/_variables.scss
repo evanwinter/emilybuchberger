@@ -10,15 +10,20 @@ $breakpoint-md: 768px;
 $scale-factor: 40;
 
 $white: #fefefe;
-$black: #050505;
-$red: #f91b26;
-$tan: #e2dccf;
+$black: #1f1c1a;
+$red: #e22230;
+$tan: #e0d4c6;
 $blue: #24a0ef;
 $gray: #555555;
+$lightpink: #fce5ef;
+$green: #24533f;
 
-$menu-background: $black;
-$menu-color: $white;
+$menu-background: $tan;
+$menu-color: $red;
 
 $about-background: $red;
-$designs-background: $white;
-$things-background: $blue;
+$designs-background: $lightpink;
+$things-background: $green;
+
+$link-color: $green;
+$link-color-hover: rgba($link-color, 0.8);

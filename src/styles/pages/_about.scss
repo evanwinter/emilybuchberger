@@ -1,7 +1,47 @@
 #about-page {
-  min-height: 100vh;
+  padding-top: 3rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 3rem;
+  margin: 0 auto;
+  width: 85%;
+  max-width: 768px;
+  min-height: 100vh;
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    font-weight: 300;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color ($duration / 3) ease;
+
+    &:hover {
+      color: $link-color-hover;
+    }
+  }
+
+}
+
+.about-layout {
+  @media (min-width: $breakpoint-sm) {
+    display: flex;
+    align-items: center;
+
+    .left {
+      flex: 1;
+      margin-right: 2rem;
+    }
+
+    .right {
+      flex: 1;
+    }
+  }
 }
