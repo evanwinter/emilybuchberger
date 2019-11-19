@@ -25,6 +25,8 @@ exports.createPages = ({ graphql, actions }) => {
       `).then(result => {
         if (result.errors) {
           reject(result.errors)
+        } else if (result.data.allContentfulProject.edges.length < 1) {
+          return
         }
         result.data.allContentfulProject.edges.forEach(edge => {
           createPage({

@@ -8,11 +8,10 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Emily Buchberger`,
-    description: ``,
-    author: ``,
+    description: `Emily Buchberger is a Chicago-based designer.`,
+    author: `Evan Winter`,
   },
   plugins: [
-
     // react helmet
     `gatsby-plugin-react-helmet`,
 
@@ -39,7 +38,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/icons/smiley.png`,
+        icon: `src/assets/icons/favicon/smiley.png`,
       },
     },
 
@@ -70,9 +69,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /icons/
-        }
-      }
+          include: /icons/,
+        },
+      },
     },
   ],
 }
