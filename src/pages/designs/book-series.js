@@ -27,10 +27,6 @@ const BookSeriesPage = ({ data }) => {
 						</section>
 
 						<ProjectRow>
-							<Img fluid={allImages["project-book-series-2"].fluid} />
-						</ProjectRow>
-
-						<ProjectRow>
 							<Img fluid={allImages["project-book-series-3"].fluid} />
 						</ProjectRow>
 
