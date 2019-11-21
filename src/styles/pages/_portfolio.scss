@@ -46,12 +46,14 @@ html.mobile, html.tablet {
     }
 
     .portfolio-item-title {
-      @include text-style-heading();
+      @include text-style-heading;
+
       color: $black;
     }
 
     .portfolio-item-subtitle {
-      @include text-style-subheading();
+      @include text-style-subheading;
+
       color: $gray;
       transition-delay: 100ms;
     }

@@ -38,12 +38,15 @@ const Menu = ({ pathname }) => {
 	const circleFullscreen = state.circle.isFullscreen
 	const lastHovered = state.page.lastHovered
 
-	useScrollPosition(({ prevPos, currPos }) => {
-	  const isShow = currPos.y > prevPos.y || currPos.y > -50
-  	if (page === "designs") {
-  		if (isShow !== menuShowing) setMenuShowing(isShow)
-  	}
-	}, [menuShowing, subPage])
+	useScrollPosition(
+		({ prevPos, currPos }) => {
+			const isShow = currPos.y > prevPos.y || currPos.y > -50
+			if (page === "designs") {
+				if (isShow !== menuShowing) setMenuShowing(isShow)
+			}
+		},
+		[menuShowing, subPage]
+	)
 
 	/**
 	 * Deactivate all menu links
@@ -156,6 +159,9 @@ const Menu = ({ pathname }) => {
 				<button className="back-button" onClick={handleBackClick}>
 					<BackIcon />
 				</button>
+				<Link className="home-button" to="/">
+					<SmileyIcon />
+				</Link>
 				<div
 					className="menu-links"
 					onMouseOver={handleLinkMouseOver}

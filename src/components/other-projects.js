@@ -36,7 +36,8 @@ const OtherProjects = () => {
 		}
 	`)
 
-	const slug = (typeof window !== "undefined") && window.location.pathname.split("/")[2]
+	const slug =
+		typeof window !== "undefined" && window.location.pathname.split("/")[2]
 
 	const [portfolio] = fromContentful(data, "portfolio")
 	const { projects } = portfolio

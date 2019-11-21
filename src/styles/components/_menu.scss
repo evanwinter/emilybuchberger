@@ -2,14 +2,12 @@ $menu-links-width: 251px;
 $menu-links-height: 174px;
 
 .menu {
-
-  @include text-style-menu();
+  @include text-style-menu;
 
   position: fixed;
   overflow: hidden;
   top: 0;
   z-index: 10;
-
   width: 100%;
   height: 100vh;
   color: $menu-color;
@@ -18,9 +16,11 @@ $menu-links-height: 174px;
 
   &[data-menu-fullscreen="true"],
   &[data-menu-showing="false"] {
-    .back-button {
+    .back-button,
+    .home-button {
       opacity: 0;
     }
+
     .menu-link[data-active="true"] {
       opacity: 0;
     }
@@ -29,13 +29,6 @@ $menu-links-height: 174px;
   button {
     opacity: 0;
     height: 2rem;
-    position: absolute;
-    top: 2rem;
-    left: 1rem;
-    transition: left $duration ease;
-    @media (min-width: $breakpoint-sm) {
-      left: 2rem;
-    }
   }
 
   svg {
@@ -47,10 +40,37 @@ $menu-links-height: 174px;
 
   .back-button {
     opacity: 1;
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    transition: left $duration ease;
+
+    @media (min-width: $breakpoint-sm) {
+      left: 2rem;
+    }
+
     &:focus {
       outline: none;
     }
+
     transition: opacity 500ms ease;
+  }
+
+  .home-button {
+    opacity: 1;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    svg {
+      width: 4rem;
+    }
+
+    transition: opacity $duration ease, right $duration ease;
+
+    @media (min-width: $breakpoint-sm) {
+      right: 1rem;
+    }
   }
 
   // Menu links are stacked and centered
@@ -66,14 +86,17 @@ $menu-links-height: 174px;
   .menu-link {
     position: absolute;
     padding: 0.25rem 0;
+
     // font-weight: 200;
 
     &:nth-child(1) {
       margin-top: 0rem;
     }
+
     &:nth-child(2) {
       margin-top: 4rem;
     }
+
     &:nth-child(3) {
       margin-top: 8rem;
     }
@@ -91,19 +114,24 @@ $menu-links-height: 174px;
   &[data-menu-fullscreen="false"] {
     // Compact height
     height: 6rem;
+
     // Links move to top-left corner
     .menu-links {
       margin-left: 4rem;
+
       @media (min-width: $breakpoint-sm) {
         margin-left: 5.5rem;
       }
+
       margin-top: 1rem;
     }
+
     // Non-active links are hidden
     .menu-link:not([data-active="true"]) {
       opacity: 0;
       pointer-events: none;
     }
+
     .menu-link {
       margin-top: 0.75rem;
       font-size: 1.5rem;
@@ -113,45 +141,69 @@ $menu-links-height: 174px;
   // Update the circle background color based on
   // last-hovered link
   &[data-last-hovered="about"] {
-    .circle { background: $about-background; }
-  }
-  &[data-last-hovered="designs"] {
-    .circle { background: $designs-background; }
-  }
-  &[data-last-hovered="things"] {
-    .circle { background: $things-background; }
+    .circle {
+      background: $about-background;
+    }
   }
 
+  &[data-last-hovered="designs"] {
+    .circle {
+      background: $designs-background;
+    }
+  }
+
+  &[data-last-hovered="things"] {
+    .circle {
+      background: $things-background;
+    }
+  }
 
   // If currently hovering over the menu...
   &[data-circle-fullscreen="true"] {
     &[data-last-hovered="about"] {
-      .menu-link { color: $designs-background; }
+      .menu-link {
+        color: $designs-background;
+      }
+
       .menu-link[data-active="true"] {
         color: $black;
         font-weight: 600;
       }
+
       .menu-link:not(#about) {
         opacity: 0;
       }
     }
+
     &[data-last-hovered="designs"] {
-      .menu-link { color: $about-background; }
+      .menu-link {
+        color: $about-background;
+      }
+
       .menu-link[data-active="true"] {
         color: $black;
         font-weight: 600;
       }
-      svg { fill: $black; }
+
+      svg {
+        fill: $black;
+      }
+
       .menu-link:not(#designs) {
         opacity: 0;
       }
     }
+
     &[data-last-hovered="things"] {
-      .menu-link { color: $designs-background; }
+      .menu-link {
+        color: $designs-background;
+      }
+
       .menu-link[data-active="true"] {
         color: $black;
         font-weight: 600;
       }
+
       .menu-link:not(#things) {
         opacity: 0;
       }
@@ -160,19 +212,31 @@ $menu-links-height: 174px;
 
   &[data-menu-fullscreen="false"] {
     &[data-last-hovered="about"] {
-      svg { fill: $black; }
-      .circle { background: $white; }
-      .menu-link { color: $black; }
+      svg {
+        fill: $black;
+      }
+
+      .circle {
+        background: $white;
+      }
+
+      .menu-link {
+        color: $black;
+      }
     }
+
     &[data-last-hovered="designs"],
     &[data-last-hovered="about"] {
       background: transparent;
-      .circle { background: transparent; }
+
+      .circle {
+        background: transparent;
+      }
     }
   }
 
   &[data-circle-fullscreen="false"] {
-    .smiley-icon {
+    .menu-links .smiley-icon {
       opacity: 0;
     }
   }
@@ -187,7 +251,7 @@ $menu-links-height: 174px;
     z-index: -1;
     transform: scale(1);
     will-change: transform;
-    transition: background $duration ease, transform $duration*1.25 ease;
+    transition: background $duration ease, transform ($duration * 1.25) ease;
   }
 
   &[data-circle-fullscreen="true"] {
@@ -196,16 +260,18 @@ $menu-links-height: 174px;
     }
   }
 
-  .smiley-icon {
+  .menu-links .smiley-icon {
     opacity: 1;
+
     svg {
       width: 5rem;
       transform: rotate(15deg);
     }
+
     position: absolute;
     top: 0.65rem;
     left: 50%;
     pointer-events: none;
+    transition: opacity $duration ease;
   }
-
 }
