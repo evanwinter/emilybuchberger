@@ -1,13 +1,15 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
+import ProjectIntro from "../../components/project-intro"
 import { Hero } from "../../components/hero"
 import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const CoalfirePage = ({ data }) => {
-	const [pageData] = fromContentful(data, 'project')
+	const [pageData] = fromContentful(data, "project")
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
@@ -15,27 +17,25 @@ const CoalfirePage = ({ data }) => {
 	return (
 		<Fragment>
 			<Seo title="Coalfire" keywords={["TODO"]} />
-			<section id="coalfire">
-				<section className="project-page">
-					<Hero fluid={hero.fluid} />
+			<ProjectLayout name="coalfire">
+				<Hero fluid={hero.fluid} />
 
-					<div className="project-wrapper">
-						<section className="text-block intro">
-							<h1>{title} &mdash;</h1>
-							<h3>{subtitle}</h3>
-							<p>{summary.summary}</p>
-						</section>
+				<div className="project-wrapper">
+					<ProjectIntro
+						title={title}
+						subtitle={subtitle}
+						summary={summary.summary}
+					/>
 
-						<ProjectRow>
-							<Img fluid={allImages["project-coalfire-stamp"].fluid} />
-						</ProjectRow>
+					<ProjectRow>
+						<Img fluid={allImages["project-coalfire-stamp"].fluid} />
+					</ProjectRow>
 
-						<ProjectRow>
-							<Img fluid={allImages["project-coalfire-colorway"].fluid} />
-						</ProjectRow>
-					</div>
-				</section>
-			</section>
+					<ProjectRow>
+						<Img fluid={allImages["project-coalfire-colorway"].fluid} />
+					</ProjectRow>
+				</div>
+			</ProjectLayout>
 		</Fragment>
 	)
 }

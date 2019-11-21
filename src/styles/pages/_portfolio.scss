@@ -36,29 +36,6 @@ html.mobile, html.tablet {
 .portfolio-item {
   position: relative;
 
-  .portfolio-item-reveal {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 500ms ease, background 500ms ease;
-
-    &:hover {
-      opacity: 1;
-      background: $white;
-
-      .portfolio-item-details {
-        .portfolio-item-title, .portfolio-item-subtitle {
-          transform: translateY(0);
-        }
-      }
-    }
-  }
-
   .portfolio-item-details {
     z-index: 1;
 
@@ -77,6 +54,29 @@ html.mobile, html.tablet {
       @include text-style-subheading();
       color: $gray;
       transition-delay: 100ms;
+    }
+  }
+}
+
+.portfolio-item-reveal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 500ms ease, background 500ms ease;
+
+  &:hover {
+    opacity: 1;
+    background: $white;
+
+    .portfolio-item-details {
+      .portfolio-item-title, .portfolio-item-subtitle {
+        transform: translateY(0);
+      }
     }
   }
 }

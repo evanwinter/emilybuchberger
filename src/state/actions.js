@@ -30,3 +30,10 @@ export const menuActions = {
 		type: "SHOW_MENU"
 	})
 }
+
+export const projectActions = {
+	setProjects: (projects) => ({
+		type: "SET_PROJECTS",
+		projects: projects
+	})
+}

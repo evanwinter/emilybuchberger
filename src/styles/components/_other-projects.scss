@@ -1,0 +1,51 @@
+.OtherProjects {
+	nav {
+		display: flex;
+		justify-content: space-between;
+		margin: 0 1rem;
+		@media (max-width: $breakpoint-sm) {
+			margin: 1rem;
+		}
+
+		a {
+			font-style: italic;
+		}
+
+		.icon-link {
+			text-decoration: none;
+			color: $black;
+		}
+	}
+
+	.projects {
+		display: flex;
+		@media (max-width: $breakpoint-sm) {
+			display: none;
+		}
+	}
+
+	.portfolio-item {
+		height: 100%;
+		width: 100%;
+		margin: 1rem 0rem 1rem 1rem;
+
+		&:last-child {
+			margin-right: 1rem;
+		}
+
+		h1, h3 {
+			font-size: 0.9rem;
+		}
+	}
+
+	.portfolio-item-reveal {
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 1rem;
+	}
+
+	.portfolio-item-details {
+		pointer-events: none;
+	}
+
+}

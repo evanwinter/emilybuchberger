@@ -5,8 +5,11 @@
 
 @import "components/card";
 @import "components/menu";
+@import "components/project-intro";
 @import "components/images";
 @import "components/button";
+@import "components/project-row";
+@import "components/other-projects";
 
 @import "pages/about";
 @import "pages/portfolio";
@@ -19,7 +22,7 @@
 }
 
 body {
-  @include text-style-thin();
+  @include text-style-thin;
 
   margin: 0;
   padding: 0;
@@ -49,31 +52,6 @@ a {
 
   &:hover {
     color: $link-color-hover;
-  }
-}
-
-.grid {
-  padding: 1rem;
-  margin: 0 auto;
-  max-width: 1440px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-
-    &.two {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    &.three {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    &.four {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
   }
 }
 
@@ -107,12 +85,28 @@ img {
 
 .fades-in {
   opacity: 0;
-  // transition: opacity 500ms ease;
 }
 
-.icon-link svg {
-  width: 1rem;
-  margin-left: 4px;
-  padding-bottom: 4px;
-  vertical-align: middle;
+.icon-link {
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1em;
+    margin-right: 0.5rem;
+    padding-bottom: 0.1em;
+  }
+
+  &.icon-right svg {
+    margin-left: 0.5em;
+    margin-right: 0;
+  }
+
+  &.icon-left svg {
+    margin-right: 0.5em;
+    margin-left: 0;
+  }
+}
+
+.next-icon {
+  // transform: rotateY(180deg);
 }

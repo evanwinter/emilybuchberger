@@ -2,6 +2,8 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Hero } from "../../components/hero"
+import ProjectLayout from "../../layouts/project-layout"
+import ProjectIntro from "../../components/project-intro"
 import ExternalLink from "../../assets/icons/external-link.svg"
 import ProjectRow from "../../components/project-row"
 import Seo from "../../components/seo"
@@ -16,17 +18,16 @@ const NyxPage = ({ data }) => {
 	return (
 		<Fragment>
 			<Seo title="Nyx" keywords={["TODO"]} />
-			<section id="nyx">
-				<section className="project-page">
+			<ProjectLayout name="nyx">
 					<div className="hero">
 						<Hero fluid={hero.fluid} />
 					</div>
 					<div className="project-wrapper">
-						<section className="text-block intro">
-							<h1>{title} &mdash;</h1>
-							<h3>{subtitle}</h3>
-							<p>{summary.summary}</p>
-						</section>
+						<ProjectIntro
+							title={title}
+							subtitle={subtitle}
+							summary={summary.summary}
+						/>
 
 						<ProjectRow>
 							<Img
@@ -70,8 +71,7 @@ const NyxPage = ({ data }) => {
 							<ExternalLink />
 						</a>
 					</div>
-				</section>
-			</section>
+			</ProjectLayout>
 		</Fragment>
 	)
 }

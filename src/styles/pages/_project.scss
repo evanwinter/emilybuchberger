@@ -14,16 +14,13 @@
   }
 }
 
-.intro {
+.ProjectIntro {
   max-width: 500px;
   margin: 2rem 0 5rem;
 
-
   h1 {
-    @include text-style-heading;
-
-    font-size: 1.25rem;
-    margin: 0;
+    // font-size: 1.25rem;
+    // margin: 0;
   }
 
   h3 {
@@ -37,22 +34,6 @@
 
   @media (max-width: $breakpoint-md) {
     margin: 0rem 0 3rem;
-  }
-}
-
-.portfolio-center-heading {
-  @include text-style-heading;
-
-  text-align: center;
-  margin-top: 4rem;
-  margin-bottom: 3rem;
-}
-
-.grid-item {
-  &.copy {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 

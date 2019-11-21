@@ -1,7 +1,9 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
+import ProjectIntro from "../../components/project-intro"
 import ProjectRow from "../../components/project-row"
 import { Hero } from "../../components/hero"
 import { prepareImages, fromContentful } from "../../utils"
@@ -16,24 +18,22 @@ const SensesPage = ({ data }) => {
 	return (
 		<Fragment>
 			<Seo title="Senses" keywords={["TODO"]} />
-			<section id="senses">
-				<section className="project-page">
-					<Hero fluid={hero.fluid} />
-					<div className="project-wrapper">
-						<section className="text-block intro">
-							<h1>{title} &mdash;</h1>
-							<h3>{subtitle}</h3>
-							<p>{summary.summary}</p>
-						</section>
-						<ProjectRow>
-							<Img fluid={allImages["project-senses-2"].fluid} />
-						</ProjectRow>
-						<ProjectRow>
-							<Img fluid={allImages["project-senses-3"].fluid} />
-						</ProjectRow>
-					</div>
-				</section>
-			</section>
+			<ProjectLayout name="senses">
+				<Hero fluid={hero.fluid} />
+				<div className="project-wrapper">
+					<ProjectIntro
+						title={title}
+						subtitle={subtitle}
+						summary={summary.summary}
+					/>
+					<ProjectRow>
+						<Img fluid={allImages["project-senses-2"].fluid} />
+					</ProjectRow>
+					<ProjectRow>
+						<Img fluid={allImages["project-senses-3"].fluid} />
+					</ProjectRow>
+				</div>
+			</ProjectLayout>
 		</Fragment>
 	)
 }
