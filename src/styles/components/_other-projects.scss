@@ -1,4 +1,7 @@
 .OtherProjects {
+
+	overflow-y: hidden;
+
 	nav {
 		display: flex;
 		justify-content: space-between;
@@ -15,6 +18,22 @@
 			text-decoration: none;
 			color: $black;
 		}
+	}
+
+	.smiley-container {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.smiley-icon {
+		width: 50%;
 	}
 
 	.projects {
@@ -36,6 +55,11 @@
 		h1, h3 {
 			font-size: 0.9rem;
 		}
+
+		&[data-active="true"] {
+			.gatsby-image-wrapper { opacity: 0.35; }
+		}
+
 	}
 
 	.portfolio-item-reveal {

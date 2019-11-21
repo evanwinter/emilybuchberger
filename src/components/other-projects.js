@@ -68,6 +68,7 @@ const OtherProjects = () => {
 			<div className="projects">
 				{projects.map((project) => (
 					<PortfolioTile
+						key={project.slug}
 						project={project}
 						active={project.slug === slug}
 					/>
