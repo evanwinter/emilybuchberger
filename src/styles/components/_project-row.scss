@@ -1,3 +1,17 @@
+.ProjectRow {
+  max-width: $breakpoint-xl;
+  margin: 1rem auto;
+  padding: 0 $pad-md;
+
+  &.full {
+    max-width: 100%;
+  }
+
+  @include smaller-than(md) {
+    padding: 0 $pad-sm;
+  }
+}
+
 .project-row-heading {
   @include text-style-heading;
 
@@ -14,7 +28,7 @@
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 
-  @media (min-width: 768px) {
+  @include larger-than(md) {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
     &.two {
@@ -37,4 +51,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+
+  h1, h2, h3 {
+    @include text-style-project-heading;
+  }
 }

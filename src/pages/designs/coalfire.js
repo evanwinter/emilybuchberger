@@ -19,22 +19,19 @@ const CoalfirePage = ({ data }) => {
 			<Seo title="Coalfire" keywords={["TODO"]} />
 			<ProjectLayout name="coalfire">
 				<Hero fluid={hero.fluid} />
+				<ProjectIntro
+					title={title}
+					subtitle={subtitle}
+					summary={summary.summary}
+				/>
 
-				<div className="project-wrapper">
-					<ProjectIntro
-						title={title}
-						subtitle={subtitle}
-						summary={summary.summary}
-					/>
+				<ProjectRow>
+					<Img fluid={allImages["project-coalfire-stamp"].fluid} />
+				</ProjectRow>
 
-					<ProjectRow>
-						<Img fluid={allImages["project-coalfire-stamp"].fluid} />
-					</ProjectRow>
-
-					<ProjectRow>
-						<Img fluid={allImages["project-coalfire-colorway"].fluid} />
-					</ProjectRow>
-				</div>
+				<ProjectRow>
+					<Img fluid={allImages["project-coalfire-colorway"].fluid} />
+				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
 	)

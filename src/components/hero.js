@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 
 export const Hero = (props) => {
 	return (
-		<div className="hero">
+		<div className="ProjectHero">
 			<Img {...props} />
 		</div>
 	)
@@ -12,7 +12,7 @@ export const Hero = (props) => {
 
 export const FluidHero = (props) => {
 	return (
-		<div className="hero">
+		<div className="ProjectHero">
 			<FluidImg {...props} />
 		</div>
 	)

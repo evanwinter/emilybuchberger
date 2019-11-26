@@ -1,39 +1,5 @@
-.hero {
-  right: 0;
-  top: 0;
-  margin-left: auto;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-
-  .gatsby-image-wrapper {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-  }
-}
-
-.ProjectIntro {
-  max-width: 500px;
-  margin: 2rem 0 5rem;
-
-  h3 {
-    font-weight: 200;
-    margin-top: 0.25rem;
-  }
-
-  p {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: $breakpoint-md) {
-    margin: 0rem 0 3rem;
-  }
-}
-
 .content-wrapper {
-  padding: 2rem;
+  padding: $pad-sm;
 
   > *:first-child {
     margin-top: 0;
@@ -41,19 +7,16 @@
 }
 
 .project-wrapper {
-  max-width: 1024px;
+  max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: $pad-md $pad-sm;
 
-  @media (max-width: $breakpoint-md) {
+  @include smaller-than(md) {
     padding: 2rem 1.5rem;
   }
 }
 
 .project-page {
-  .ProjectRow {
-    margin: 1rem 0;
-  }
 
   .grid {
     padding: 0;

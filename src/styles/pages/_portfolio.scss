@@ -1,5 +1,5 @@
 html.mobile, html.tablet {
-  @media (max-width: $breakpoint-md - 1) {
+  @include smaller-than(md) {
     .portfolio-item {
       text-decoration: none;
     }

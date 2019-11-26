@@ -16,6 +16,10 @@
     font-weight: 300;
   }
 
+  @include smaller-than(sm) {
+    padding-top: 6rem;
+  }
+
   a {
     color: $link-color;
     text-decoration: none;
@@ -29,7 +33,7 @@
 }
 
 .about-layout {
-  @media (min-width: $breakpoint-sm) {
+  @include larger-than(sm) {
     display: flex;
     align-items: center;
 

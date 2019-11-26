@@ -68,7 +68,7 @@ $menu-links-height: 174px;
 
     transition: opacity $duration ease, right $duration ease;
 
-    @media (min-width: $breakpoint-sm) {
+    @include larger-than(sm) {
       right: 1rem;
     }
   }
@@ -119,7 +119,7 @@ $menu-links-height: 174px;
     .menu-links {
       margin-left: 4rem;
 
-      @media (min-width: $breakpoint-sm) {
+      @include larger-than(sm) {
         margin-left: 5.5rem;
       }
 

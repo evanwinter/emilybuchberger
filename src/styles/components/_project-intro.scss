@@ -1,6 +1,11 @@
 .ProjectIntro {
-  max-width: 500px;
-  margin: 2rem 0 5rem;
+  max-width: $breakpoint-xl;
+  margin: 0 auto;
+  padding: $pad-lg $pad-md;
+
+  > * {
+    max-width: 500px;
+  }
 
   h1 {
     @include text-style-heading;
@@ -18,7 +23,11 @@
     margin-bottom: 0;
   }
 
-  @media (max-width: $breakpoint-md) {
-    margin: 0rem 0 3rem;
+  @include smaller-than(md) {
+    padding: $pad-md;
+  }
+
+  @include smaller-than(sm) {
+    padding: $pad-sm;
   }
 }

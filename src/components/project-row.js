@@ -1,11 +1,8 @@
 import React from "react"
 
-const ProjectRow = ({ children, margin, heading }) => {
+const ProjectRow = ({ children, heading, style, full }) => {
 	return (
-		<div
-			className="ProjectRow"
-			style={{ margin: `${margin ? margin : "1rem"} 0` }}
-		>
+		<div className={`ProjectRow ${full ? "full" : ''}`} style={style}>
 			{heading && <h3 className="project-row-heading">{heading}</h3>}
 			{children}
 		</div>
