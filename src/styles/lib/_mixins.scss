@@ -24,10 +24,47 @@
 }
 
 @mixin row-margins {
-	&:first-child {
-		margin-left: 0;
-	}
-	&:last-child {
-		margin-right: 0;
-	}
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@mixin smaller-than($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "md" {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "lg" {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+}
+
+@mixin larger-than($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (min-width: $breakpoint-sm + 1) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "md" {
+    @media (min-width: $breakpoint-md + 1) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "lg" {
+    @media (min-width: $breakpoint-lg + 1) {
+      @content;
+    }
+  }
 }

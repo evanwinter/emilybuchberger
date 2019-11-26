@@ -18,7 +18,7 @@
     margin-bottom: 0;
   }
 
-  @media (max-width: $breakpoint-md) {
+  @include smaller-than(md) {
     margin: 0rem 0 3rem;
   }
 }

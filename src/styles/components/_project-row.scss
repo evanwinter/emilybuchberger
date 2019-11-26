@@ -14,7 +14,7 @@
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 
-  @media (min-width: 768px) {
+  @include larger-than(md) {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
     &.two {

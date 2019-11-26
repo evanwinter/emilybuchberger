@@ -6,7 +6,7 @@
     justify-content: space-between;
     margin: 0 1rem;
 
-    @media (max-width: $breakpoint-sm) {
+    @include smaller-than(sm) {
       margin: 1rem;
     }
 
@@ -41,7 +41,7 @@
   .projects {
     display: flex;
 
-    @media (max-width: $breakpoint-sm) {
+    @include smaller-than(sm) {
       display: none;
     }
   }
@@ -66,14 +66,14 @@
     }
 
     &:hover {
-      @media (min-width: $breakpoint-lg + 1) {
+      @include larger-than(lg) {
         .smiley-container {
           opacity: 0;
         }
       }
     }
 
-    @media (max-width: $breakpoint-lg) {
+    @include smaller-than(lg) {
       .portfolio-item-reveal {
         h1, h3 {
           font-size: 0.8rem;
@@ -81,13 +81,12 @@
       }
     }
 
-    @media (max-width: $breakpoint-md) {
+
+    @include smaller-than(md) {
       .portfolio-item-reveal {
         display: none;
       }
     }
-
-
   }
 
   .portfolio-item-reveal {

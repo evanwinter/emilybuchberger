@@ -62,7 +62,7 @@ img {
 }
 
 .page-container {
-  @media (min-width: $breakpoint-sm) {
+  @include larger-than(sm) {
     &:not(#about-page) {
       margin-top: calc(30vh - 109px);
     }
