@@ -23,6 +23,11 @@
   font-weight: 600;
 }
 
+@mixin text-style-project-heading {
+  font-family: 'GT America';
+  font-weight: 500;
+}
+
 @mixin row-margins {
   &:first-child {
     margin-left: 0;

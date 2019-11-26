@@ -1,14 +1,15 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
 import ProjectIntro from "../../components/project-intro"
-import ProjectLayout from "../../layouts/project-layout"
+import { ThreeColumn } from "../../components/columns"
 import { Hero } from "../../components/hero"
 import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
-const BookSeriesPage = ({ data }) => {
+const SplitwisePage = ({ data }) => {
 	const [pageData] = fromContentful(data, "project")
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
@@ -16,9 +17,10 @@ const BookSeriesPage = ({ data }) => {
 
 	return (
 		<Fragment>
-			<Seo title="Book Series" keywords={["TODO"]} />
-			<ProjectLayout name="book-series">
+			<Seo title="Splitwise" keywords={["TODO"]} />
+			<ProjectLayout name="splitwise">
 				<Hero fluid={hero.fluid} />
+
 				<ProjectIntro
 					title={title}
 					subtitle={subtitle}
@@ -26,41 +28,51 @@ const BookSeriesPage = ({ data }) => {
 				/>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-book-series-3"].fluid} />
-				</ProjectRow>
-
-				<ProjectRow>
-					<div className="grid">
-						<Img fluid={allImages["project-book-series-4"].fluid} />
-						<Img fluid={allImages["project-book-series-5"].fluid} />
+					<div className="copy left">
+						<div>
+							<h3>Design Challenges</h3>
+							<p>
+								Create a new flow that is clearer while keeping relevant information
+							</p>
+						</div>
+					</div>
+					<div className="copy left">
+						<div>
+							<h3>Design Solutions</h3>
+							<p>
+								Help users add expenses and settle up
+							</p>
+						</div>
 					</div>
 				</ProjectRow>
 
-				<ProjectRow>
-					<Img fluid={allImages["project-book-series-6"].fluid} />
+				<ProjectRow full style={{ backgroundColor: `#223322` }}>
+					<Img fluid={allImages["splitwise-wireframe"].fluid} />
 				</ProjectRow>
 
-				<ProjectRow>
-					<Img fluid={allImages["project-book-series-7"].fluid} />
-				</ProjectRow>
-
-				<ProjectRow>
-					<Img fluid={allImages["project-book-series-8"].fluid} />
-				</ProjectRow>
-
-				<ProjectRow>
-					<Img fluid={allImages["book-with-koko"].fluid} />
+				<ProjectRow style={{margin: `5rem auto`}}>
+					<div className="grid three">
+						<div className="grid-item">
+							<Img fluid={allImages["splitwise-phone-1"].fluid} />
+						</div>
+						<div className="grid-item">
+							<Img fluid={allImages["splitwise-phone-2"].fluid} />
+						</div>
+						<div className="grid-item">
+							<Img fluid={allImages["splitwise-phone-3"].fluid} />
+						</div>
+					</div>
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
 	)
 }
 
-export default BookSeriesPage
+export default SplitwisePage
 
 export const query = graphql`
-	query bookSeriesQuery {
-		allContentfulProject(filter: { slug: { eq: "book-series" } }) {
+	query splitwiseQuery {
+		allContentfulProject(filter: { slug: { eq: "splitwise" } }) {
 			edges {
 				node {
 					id

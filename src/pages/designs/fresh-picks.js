@@ -23,46 +23,44 @@ const FreshPicksPage = ({ data }) => {
 				<div className="hero">
 					<FluidHero src={heroSrc} alt={heroTitle} pad={`70%`} />
 				</div>
-				<div className="project-wrapper">
-					<ProjectIntro
-						title={title}
-						subtitle={subtitle}
-						summary={summary.summary}
-					/>
+				<ProjectIntro
+					title={title}
+					subtitle={subtitle}
+					summary={summary.summary}
+				/>
 
-					<ProjectRow>
-						<Img fluid={allImages["project-fp-magazine"].fluid} />
-					</ProjectRow>
+				<ProjectRow>
+					<Img fluid={allImages["project-fp-magazine"].fluid} />
+				</ProjectRow>
 
-					<ProjectRow>
-						<Img fluid={allImages["project-fp-packing-slip"].fluid} />
-					</ProjectRow>
+				<ProjectRow>
+					<Img fluid={allImages["project-fp-packing-slip"].fluid} />
+				</ProjectRow>
 
-					<ProjectRow>
-						<div className="grid two-thirds-one-third">
-							<Img fluid={allImages["project-fp-print"].fluid} />
-							<Img fluid={allImages["project-fp-bag"].fluid} />
-						</div>
-					</ProjectRow>
+				<ProjectRow>
+					<div className="grid two-thirds-one-third">
+						<Img fluid={allImages["project-fp-print"].fluid} />
+						<Img fluid={allImages["project-fp-bag"].fluid} />
+					</div>
+				</ProjectRow>
 
-					<ProjectRow>
-						<Img fluid={allImages["project-fp-billboard"].fluid} />
-					</ProjectRow>
+				<ProjectRow>
+					<Img fluid={allImages["project-fp-billboard"].fluid} />
+				</ProjectRow>
 
-					<ProjectRow>
-						<Img fluid={allImages["project-fp-web"].fluid} />
-					</ProjectRow>
+				<ProjectRow>
+					<Img fluid={allImages["project-fp-web"].fluid} />
+				</ProjectRow>
 
-					<a
-						href={pdf.localFile.publicURL}
-						className="icon-link"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						view full brandbook
-						<ExternalLink />
-					</a>
-				</div>
+				<a
+					href={pdf.localFile.publicURL}
+					className="icon-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					view full brandbook
+					<ExternalLink />
+				</a>
 			</ProjectLayout>
 		</Fragment>
 	)
