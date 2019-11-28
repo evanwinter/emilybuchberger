@@ -60,15 +60,18 @@ const NyxPage = ({ data }) => {
 					<Img fluid={allImages["project-nyx-7"].fluid} />
 				</ProjectRow>
 
-				<a
-					href={pdf.localFile.publicURL}
-					className="icon-link"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					view full brandbook
-					<ExternalLink />
-				</a>
+				<ProjectRow>
+					<a
+						href={pdf.localFile.publicURL}
+						className="icon-link"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						view full brandbook
+						<ExternalLink />
+					</a>
+				</ProjectRow>
+
 			</ProjectLayout>
 		</Fragment>
 	)

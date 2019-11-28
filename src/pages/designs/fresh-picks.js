@@ -52,15 +52,18 @@ const FreshPicksPage = ({ data }) => {
 					<Img fluid={allImages["project-fp-web"].fluid} />
 				</ProjectRow>
 
-				<a
-					href={pdf.localFile.publicURL}
-					className="icon-link"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					view full brandbook
-					<ExternalLink />
-				</a>
+				<ProjectRow>
+					<a
+						href={pdf.localFile.publicURL}
+						className="icon-link"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						view full brandbook
+						<ExternalLink />
+					</a>
+				</ProjectRow>
+
 			</ProjectLayout>
 		</Fragment>
 	)
