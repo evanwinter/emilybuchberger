@@ -2,6 +2,7 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Hero } from "../../components/hero"
+import Video from "../../components/video"
 import ProjectLayout from "../../layouts/project-layout"
 import ProjectIntro from "../../components/project-intro"
 import Seo from "../../components/seo"
@@ -12,9 +13,12 @@ import { prepareImages, fromContentful } from "../../utils"
 
 const BopPage = ({ data }) => {
 	const [pageData] = fromContentful(data, "project")
+
+	console.log(pageData)
+
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
-	const allImages = prepareImages(images)
+	const media = prepareImages(images)
 
 	return (
 		<Fragment>
@@ -30,13 +34,13 @@ const BopPage = ({ data }) => {
 				<ProjectRow style={{margin: `0rem auto 5rem auto`}} heading={"User Interviews"}>
 					<ThreeColumn>
 						<div className="card">
-							<Img fluid={allImages["BOP-graph-1"].fluid} />
+							<Img fluid={media["BOP-graph-1"].fluid} />
 						</div>
 						<div className="card">
-							<Img fluid={allImages["BOP-graph-2"].fluid} />
+							<Img fluid={media["BOP-graph-2"].fluid} />
 						</div>
 						<div className="card">
-							<Img fluid={allImages["BOP-graph-3"].fluid} />
+							<Img fluid={media["BOP-graph-3"].fluid} />
 						</div>
 					</ThreeColumn>
 				</ProjectRow>
@@ -44,36 +48,32 @@ const BopPage = ({ data }) => {
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}} heading={"User Personas"}>
 					<ThreeColumn>
 						<div className="card">
-							<Img fluid={allImages["BOP-persona-1"].fluid} />
+							<Img fluid={media["BOP-persona-1"].fluid} />
 						</div>
 						<div className="card">
-							<Img fluid={allImages["BOP-persona-2"].fluid} />
+							<Img fluid={media["BOP-persona-2"].fluid} />
 						</div>
 						<div className="card">
-							<Img fluid={allImages["BOP-persona-3"].fluid} />
+							<Img fluid={media["BOP-persona-3"].fluid} />
 						</div>
 					</ThreeColumn>
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
 					<Img
-						fluid={allImages["BOP-styleguide"].fluid}
+						fluid={media["BOP-styleguide"].fluid}
 						style={{ maxHeight: "100vh" }}
 					/>
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
-					<FluidImg
-						src={allImages["BOP-joinparty"].fluid}
-						pad={"131%"}
-						alt={allImages["BOP-joinparty"].title}
-					/>
+					<Video src={media["bop-prototype"].src} />
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
 					<TwoColumn>
 						<Img
-							fluid={allImages["BOP-zoom-nowplaying"].fluid}
+							fluid={media["BOP-zoom-nowplaying"].fluid}
 							style={{ maxHeight: "70vh" }}
 							imgStyle={{ objectFit: "contain" }}
 						/>
@@ -121,14 +121,14 @@ const BopPage = ({ data }) => {
 							pad={"131%"}
 							fit={"contain"}
 							style={{ maxHeight: "70vh" }}
-							src={allImages["BOP-playlist"].fluid}
-							alt={allImages["BOP-playlist"].title}
+							src={media["BOP-playlist"].fluid}
+							alt={media["BOP-playlist"].title}
 						/>
 					</TwoColumn>
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
-					<Img fluid={allImages["BOP-flow"].fluid} />
+					<Img fluid={media["BOP-flow"].fluid} />
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>

@@ -22,16 +22,36 @@ export const dashToSpace = (str) => {
 }
 
 /**
+ * Get source (either publicURL or childImageSharp.fluid)
+ */
+const getSource = ({ childImageSharp, publicURL }) => {
+	if (childImageSharp) {
+		if (childImageSharp.fluid) {
+			return childImageSharp.fluid
+		} else if (childImageSharp.fixed) {
+			return childImageSharp.fixed
+		}
+	} else if (publicURL) {
+		return publicURL
+	} else {
+		console.error(`Couldn't get a source`)
+	}
+}
+
+/**
  * Extract images
  */
 export const prepareImages = (images) => {
 	const prepared = images.reduce((acc, curr) => {
 		const { localFile, title } = curr
+		const { childImageSharp } = localFile
+		const src = getSource(localFile)
 		acc[title] = {
 			title: title,
 			fluid: localFile.childImageSharp
 				? localFile.childImageSharp.fluid
 				: localFile.publicURL,
+			src: src
 		}
 		return acc
 	}, {})
