@@ -1,7 +1,7 @@
-@import "lib/fonts";
-@import "lib/variables";
-@import "lib/mixins";
-@import "lib/typography";
+@import "shared/fonts";
+@import "shared/variables";
+@import "shared/mixins";
+@import "shared/typography";
 
 @import "components/card";
 @import "components/menu";

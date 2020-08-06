@@ -1,0 +1,22 @@
+.heading {
+  @include text-style-heading();
+}
+
+.subheading {
+  @include text-style-subheading();
+}
+
+body,
+span,
+p {
+  @include text-style-thin();
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include text-style-heading();
+}

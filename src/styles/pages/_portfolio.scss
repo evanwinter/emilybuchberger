@@ -1,4 +1,5 @@
-html.mobile, html.tablet {
+html.mobile,
+html.tablet {
   @include smaller-than(md) {
     .portfolio-item {
       text-decoration: none;
@@ -21,13 +22,15 @@ html.mobile, html.tablet {
       }
     }
 
-    .portfolio-item-title, .portfolio-item-subtitle {
+    .portfolio-item-title,
+    .portfolio-item-subtitle {
       font-size: 1rem;
     }
   }
 
   .portfolio-item-details {
-    .portfolio-item-title, .portfolio-item-subtitle {
+    .portfolio-item-title,
+    .portfolio-item-subtitle {
       transform: translateY(0);
     }
   }
@@ -39,7 +42,8 @@ html.mobile, html.tablet {
   .portfolio-item-details {
     z-index: 1;
 
-    .portfolio-item-title, .portfolio-item-subtitle {
+    .portfolio-item-title,
+    .portfolio-item-subtitle {
       margin: 0;
       transform: translateY(1.5rem);
       transition: transform 500ms ease;
@@ -76,14 +80,13 @@ html.mobile, html.tablet {
     background: $white;
 
     .portfolio-item-details {
-      .portfolio-item-title, .portfolio-item-subtitle {
+      .portfolio-item-title,
+      .portfolio-item-subtitle {
         transform: translateY(0);
       }
     }
   }
 }
-
-.portfolio-page {}
 
 .portfolio-wrapper {
   margin-top: 6rem;

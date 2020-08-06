@@ -8,14 +8,13 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Emily Buchberger`,
-    description: `Emily Buchberger is a Chicago-based designer.`,
+    description: `Emily Buchberger is a designer in Chicago, Illinois.`,
     author: `Evan Winter`,
   },
   plugins: [
-    // react helmet
     `gatsby-plugin-react-helmet`,
-
-    // filesystem
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -23,29 +22,19 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
-
-    // sharp
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-
-    // manifest
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Emily Buchberger`,
+        short_name: `Emily Buchberger`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#fff`,
+        theme_color: `#e0d4c6`,
+        display: `standalone`,
         icon: `src/assets/icons/favicon/smiley.png`,
       },
     },
-
-    // offline
     `gatsby-plugin-offline`,
-
-    // contentful
     {
       resolve: `gatsby-source-contentful`,
       export: `GATSBY_CONTENTFUL_OFFLINE=true`,
@@ -55,16 +44,10 @@ module.exports = {
         downloadLocal: true,
       },
     },
-
-    // sass
     {
       resolve: `gatsby-plugin-sass`,
     },
-
-    // v1 layout
     `gatsby-plugin-layout`,
-
-    // react svg
     {
       resolve: "gatsby-plugin-react-svg",
       options: {

@@ -60,7 +60,9 @@
     justify-content: flex-end;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     @include text-style-project-heading;
   }
 }

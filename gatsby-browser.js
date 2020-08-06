@@ -29,8 +29,8 @@ export const onClientEntry = () => {
 
 	// typography.injectStyles()
 
-  if (typeof window.IntersectionObserver === `undefined`) {
-    import(`intersection-observer`)
-    console.log(`# IntersectionObserver is polyfilled`)
-  }
+//   if (typeof window.IntersectionObserver === `undefined`) {
+//     import(`intersection-observer`)
+//     console.log(`# IntersectionObserver is polyfilled`)
+//   }
 }
