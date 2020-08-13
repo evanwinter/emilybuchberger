@@ -1,14 +1,15 @@
 import React from "react"
-import Menu from "../components/menu"
-import Transition from "../components/transition"
+import Menu from "@components/Menu"
 
 const Layout = ({ children, location }) => {
+  const [page, subPage] = location.pathname.substr(1).split("/")
   return (
-    <div className="layout">
-      <Menu pathname={location.pathname} />
-      <Transition location={location}>
-        <main>{children}</main>
-      </Transition>
+    <div className="layout" data-page={`${subPage || page}`}>
+      <Menu />
+      <div className="spacer"></div>
+      <div className="content">
+        <div className="container">{children}</div>
+      </div>
     </div>
   )
 }

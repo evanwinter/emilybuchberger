@@ -1,278 +1,129 @@
-$menu-links-width: 251px;
-$menu-links-height: 174px;
-
-.menu {
-  @include text-style-menu;
-
+.menu-wrapper {
   position: fixed;
-  overflow: hidden;
   top: 0;
-  z-index: 10;
+  left: 0;
   width: 100%;
   height: 100vh;
-  color: $menu-color;
-  background: $menu-background;
-  transition: height 500ms ease;
 
-  &[data-menu-fullscreen="true"],
-  &[data-menu-showing="false"] {
-    .back-button,
-    .home-button {
-      opacity: 0;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    .menu-link[data-active="true"] {
-      opacity: 0;
-    }
-  }
+  transition: width 500ms ease, height 500ms ease;
 
-  button {
-    opacity: 0;
-    height: 2rem;
-  }
-
-  svg {
-    height: auto;
-    width: 2rem;
-    fill: $white;
-    transition: opacity $duration ease, fill $duration ease;
-  }
-
-  .back-button {
-    opacity: 1;
-    position: absolute;
-    top: 2rem;
-    left: 1rem;
-    transition: left $duration ease;
-
-    @media (min-width: $breakpoint-sm) {
-      left: 2rem;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    transition: opacity 500ms ease;
-  }
-
-  .home-button {
-    opacity: 1;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-
-    svg {
-      width: 4rem;
-    }
-
-    transition: opacity $duration ease, right $duration ease;
-
-    @include larger-than(sm) {
-      right: 1rem;
-    }
-  }
-
-  // Menu links are stacked and centered
-  .menu-links {
+  .menu {
     display: flex;
-    width: 300px;
+    align-items: center;
+  }
+
+  nav {
+    position: relative;
+    z-index: $layer-0;
+    display: flex;
+    justify-content: flex-start;
     flex-direction: column;
-    margin-left: calc(50% - 125px);
-    margin-top: calc(50vh - 97px);
-    transition: margin $duration ease;
-  }
 
-  .menu-link {
-    position: absolute;
-    padding: 0.25rem 0;
+    &[data-last-hovered="about"]     { #circle { background-color: $red;       }}
+    &[data-last-hovered="portfolio"] { #circle { background-color: $lightpink; }}
+    &[data-last-hovered="things"]    { #circle { background-color: $green;     }}
 
-    // font-weight: 200;
-
-    &:nth-child(1) {
-      margin-top: 0rem;
-    }
-
-    &:nth-child(2) {
-      margin-top: 4rem;
-    }
-
-    &:nth-child(3) {
-      margin-top: 8rem;
-    }
-
-    color: $menu-color;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 3rem;
-    opacity: 1;
-    display: block;
-    transition: color 500ms ease, opacity 500ms ease, font-size 500ms ease,
-      margin-top 500ms ease;
-  }
-
-  // menu "compact" mode
-  &[data-menu-fullscreen="false"] {
-    // Compact height
-    height: 6rem;
-
-    // Links move to top-left corner
-    .menu-links {
-      margin-left: 4rem;
-
-      @include larger-than(sm) {
-        margin-left: 5.5rem;
+    &:hover {
+      &[data-last-hovered="about"]     {
+        .site-nav-link { color: $white; }
       }
+      &[data-last-hovered="portfolio"] {
+        .site-nav-link { color: $red; }
+      }
+      &[data-last-hovered="things"]    {
+        .site-nav-link { color: $white; }
+      }
+      .site-nav-link:not(:hover) {
+        opacity: 0;
+      }
+    }
+  }
 
-      margin-top: 1rem;
+  .site-nav-link {
+    color: $red;
+    @include text-style(menu);
+    text-decoration: none;
+    height: $menu-link-height;
+    line-height: 1;
+    z-index: inherit;
+
+    transition: color     500ms ease,
+                opacity   500ms ease,
+                height    500ms ease,
+                font-size 500ms ease,
+                margin    500ms ease;
+  }
+
+  #circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    z-index: $layer-1;
+    pointer-events: none;
+    background-color: transparent;
+
+    position: fixed;
+    left:   $circle-position-left;
+    bottom: $circle-position-bottom;
+
+    transition: background-color 500ms ease;
+  } 
+
+
+  &[data-is-minimized="true"] {
+    height: $menu-link-height * 1.6;
+    width: 300px;
+
+    nav .site-nav-link {
+      color: $black;
+      font-size: 2rem;
+      font-weight: 600;
     }
 
-    // Non-active links are hidden
-    .menu-link:not([data-active="true"]) {
+    #back-link {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .site-nav-link:not(.active) {
       opacity: 0;
+      height: 1px;
       pointer-events: none;
     }
 
-    .menu-link {
-      margin-top: 0.75rem;
-      font-size: 1.5rem;
-    }
-  }
-
-  // Update the circle background color based on
-  // last-hovered link
-  &[data-last-hovered="about"] {
-    .circle {
-      background: $about-background;
-    }
-  }
-
-  &[data-last-hovered="designs"] {
-    .circle {
-      background: $designs-background;
-    }
-  }
-
-  &[data-last-hovered="things"] {
-    .circle {
-      background: $things-background;
-    }
-  }
-
-  // If currently hovering over the menu...
-  &[data-circle-fullscreen="true"] {
-    &[data-last-hovered="about"] {
-      .menu-link {
-        color: $designs-background;
-      }
-
-      .menu-link[data-active="true"] {
-        color: $black;
-        font-weight: 600;
-      }
-
-      .menu-link:not(#about) {
-        opacity: 0;
-      }
-    }
-
-    &[data-last-hovered="designs"] {
-      .menu-link {
-        color: $about-background;
-      }
-
-      .menu-link[data-active="true"] {
-        color: $black;
-        font-weight: 600;
-      }
-
-      svg {
-        fill: $black;
-      }
-
-      .menu-link:not(#designs) {
-        opacity: 0;
-      }
-    }
-
-    &[data-last-hovered="things"] {
-      .menu-link {
-        color: $designs-background;
-      }
-
-      .menu-link[data-active="true"] {
-        color: $black;
-        font-weight: 600;
-      }
-
-      .menu-link:not(#things) {
-        opacity: 0;
+    .site-nav-link {
+      margin-left: 2rem;
+      height: $menu-compact-link-height;
+      color: $black !important;
+      &.active {
+        opacity: 1 !important;
       }
     }
   }
 
-  &[data-menu-fullscreen="false"] {
-    &[data-last-hovered="about"] {
-      svg {
-        fill: $black;
-      }
+  #back-link {
+    position: fixed;
+    left: $gutter-size;
+    top: 2.3rem;
+    width: 24px;
+    height: 24px;
+    transform: translateY(2rem);
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: none;
 
-      .circle {
-        background: $white;
-      }
+    z-index: 10;
 
-      .menu-link {
-        color: $black;
-      }
-    }
-
-    &[data-last-hovered="designs"],
-    &[data-last-hovered="about"] {
-      background: transparent;
-
-      .circle {
-        background: transparent;
-      }
-    }
-  }
-
-  &[data-circle-fullscreen="false"] {
-    .menu-links .smiley-icon {
-      opacity: 0;
-    }
-  }
-
-  .circle {
-    width: 100px;
-    height: 100px;
-    background: white;
-    border-radius: 100%;
-    position: absolute;
-    right: 100%;
-    z-index: -1;
-    transform: scale(1);
-    will-change: transform;
-    transition: background $duration ease, transform ($duration * 1.25) ease;
-  }
-
-  &[data-circle-fullscreen="true"] {
-    .circle {
-      transform: scale(50);
-    }
-  }
-
-  .menu-links .smiley-icon {
-    opacity: 1;
+    transition: opacity 500ms ease, transform 500ms ease;
 
     svg {
-      width: 5rem;
-      transform: rotate(15deg);
+      transition: fill 500ms ease;
     }
-
-    position: absolute;
-    top: 0.65rem;
-    left: 50%;
-    pointer-events: none;
-    transition: opacity $duration ease;
   }
 }

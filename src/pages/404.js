@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { Link } from "gatsby"
-import Seo from "../components/seo"
+import Seo from "@components/seo"
 
 const NotFoundPage = () => (
   <Fragment>

@@ -1,0 +1,25 @@
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  &.columns-1 {
+    grid-template-columns: 1fr;
+  }
+
+  &.columns-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.columns-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  &.gap {
+    grid-gap: 32px;
+  }
+
+  &.padded {
+    .column {
+      padding: 16px;
+    }
+  }
+}

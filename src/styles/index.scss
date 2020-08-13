@@ -3,19 +3,9 @@
 @import "shared/mixins";
 @import "shared/typography";
 
-@import "components/card";
 @import "components/menu";
-@import "components/project-intro";
-@import "components/project-hero";
-@import "components/images";
-@import "components/button";
-@import "components/project-row";
-@import "components/other-projects";
 
 @import "pages/about";
-@import "pages/portfolio";
-@import "pages/project";
-@import "pages/things";
 
 * {
   box-sizing: border-box;
@@ -24,7 +14,7 @@
 }
 
 body {
-  @include text-style-thin;
+  @include text-style(thin);
 
   margin: 0;
   padding: 0;
@@ -38,59 +28,124 @@ body {
   }
 }
 
-// Button resets
-button {
-  color: inherit;
-  -webkit-appearance: none;
-  -webkit-rtl-ordering: logical;
-  background: none;
-  border: none;
-  cursor: pointer;
+.layout {
+  width: 100%;
+  height: 100vh;
+  
+  background-color: $white;
+  transition: background-color 500ms ease;
+  &[data-page="/"] { background-color: $tan; }
+}
+
+.spacer {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: ($menu-compact-link-height * 3);
+  pointer-events: none;
+  z-index: $layer-3;
+  visibility: hidden;
+}
+
+.content {
+  z-index: $layer-3;
+  width: 100%;
+  height: 100vh;
+  margin-top: -94px; /* minus the height of the menu? */
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 $gutter-size;
+  margin: 0 auto;
+}
+
+@mixin animated-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    display: block;
+    width: 0px;
+    height: 2px;
+    opacity: 0.5;
+    margin: 0.1em auto;
+    border-bottom: 1px solid black;
+    transition: opacity 350ms ease,
+                background 350ms ease,
+                width 350ms ease;
+  }
+  
+  &:hover {
+    &::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
 }
 
 a {
   color: $link-color;
   font-weight: 400;
-
-  &:hover {
-    color: $link-color-hover;
-  }
+  // text-decoration: none;
+  // @include animated-underline;
 }
 
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+// // Button resets
+// button {
+//   color: inherit;
+//   -webkit-appearance: none;
+//   -webkit-rtl-ordering: logical;
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+// }
 
-.page-container {
-  @include larger-than(sm) {
-    &:not(#about-page) {
-      margin-top: calc(30vh - 109px);
-    }
-  }
-}
+// a {
+//   color: $link-color;
+//   font-weight: 400;
 
-.fades-in {
-  opacity: 0;
-}
+//   &:hover {
+//     color: $link-color-hover;
+//   }
+// }
 
-.icon-link {
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-    width: 1em;
-    margin-left: 0.35em;
-    padding-bottom: 0.1em;
-  }
+// img {
+//   display: block;
+//   width: 100%;
+//   height: auto;
+// }
 
-  &.icon-right svg {
-    margin-left: 0.5em;
-    margin-right: 0;
-  }
+// .page-container {
+//   @include larger-than(sm) {
+//     &:not(#about-page) {
+//       margin-top: calc(30vh - 109px);
+//     }
+//   }
+// }
 
-  &.icon-left svg {
-    margin-right: 0.5em;
-    margin-left: 0;
-  }
-}
+// .fades-in {
+//   opacity: 0;
+// }
+
+// .icon-link {
+//   svg {
+//     display: inline-block;
+//     vertical-align: middle;
+//     width: 1em;
+//     margin-left: 0.35em;
+//     padding-bottom: 0.1em;
+//   }
+
+//   &.icon-right svg {
+//     margin-left: 0.5em;
+//     margin-right: 0;
+//   }
+
+//   &.icon-left svg {
+//     margin-right: 0.5em;
+//     margin-left: 0;
+//   }
+// }

@@ -36,6 +36,17 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@components": "src/components",
+          "@styles": "src/styles",
+          "@icons": "src/assets/icons",
+        },
+        extensions: ["js", "scss"],
+      },
+    },
+    {
       resolve: `gatsby-source-contentful`,
       export: `GATSBY_CONTENTFUL_OFFLINE=true`,
       options: {

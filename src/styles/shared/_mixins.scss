@@ -1,18 +1,22 @@
+// TODO
 @mixin text-style-heading {
   font-family: "GT America Expanded";
   font-weight: 500;
 }
 
+// TODO
 @mixin text-style-subheading {
   font-family: "GT America";
   font-weight: 200;
 }
 
+// TODO
 @mixin text-style-regular {
   font-family: "GT America";
   font-weight: 400;
 }
 
+// TODO
 @mixin text-style-thin {
   font-family: "GT America";
   font-weight: 200;
@@ -20,12 +24,30 @@
 
 @mixin text-style-menu {
   font-family: "GT America Expanded Thin";
-  font-weight: 600;
+  font-weight: 300;
+  font-size: 3rem;
 }
 
+// TODO
 @mixin text-style-project-heading {
   font-family: "GT America";
   font-weight: 500;
+}
+
+@mixin text-style($style) {
+  @if $style == "heading" {
+    font-family: "GT America Expanded";
+  } @else if ($style == "subheading") {
+    font-family: "GT America";
+  } @else if ($style == "regular") {
+    font-family: "GT America";
+  } @else if ($style == "thin") {
+    @include text-style-thin;
+  } @else if ($style == "menu") {
+    @include text-style-menu;
+  } @else if ($style == "project-heading") {
+    font-family: "GT America";
+  }
 }
 
 @mixin row-margins {
