@@ -6,12 +6,12 @@ import { fromContentful } from "../utils"
 const PortfolioGrid = () => {
 	const data = useStaticQuery(graphql`
 		query designsQuery {
-			allContentfulPortfolio {
+			allContentfulPortfolioLandingPage {
 				edges {
 					node {
 						title
 						projects {
-							... on ContentfulProject {
+							... on ContentfulProjectPage {
 								id
 								slug
 								subtitle

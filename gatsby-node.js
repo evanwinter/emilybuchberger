@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(`
         {
-          allContentfulProject(filter: { useDefaultTemplate: { eq: true }}) {
+          allContentfulProjectPage(filter: { useDefaultTemplate: { eq: true }}) {
             edges {
               node {
                 id
@@ -25,10 +25,10 @@ exports.createPages = ({ graphql, actions }) => {
       `).then(result => {
         if (result.errors) {
           reject(result.errors)
-        } else if (result.data.allContentfulProject.edges.length < 1) {
+        } else if (result.data.allContentfulProjectPage.edges.length < 1) {
           return
         }
-        result.data.allContentfulProject.edges.forEach(edge => {
+        result.data.allContentfulProjectPage.edges.forEach(edge => {
           createPage({
             path: "/designs/" + edge.node.slug,
             component: defaultTemplate,

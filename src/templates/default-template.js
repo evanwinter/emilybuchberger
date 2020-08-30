@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import Seo from "../components/seo"
 
 const DefaultTemplate = ({ data, pageContext }) => {
-	const [pageData] = data.allContentfulProject.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulProjectPage.edges.map(edge => edge.node)
 	const { images, summary, title, subtitle, pdf } = pageData
 
 	const templateClassName = title
@@ -41,7 +41,7 @@ export default DefaultTemplate
  */
 export const query = graphql`
 	query defaultTemplateQuery($slug: String!) {
-		allContentfulProject(filter: { slug: { eq: $slug }}) {
+		allContentfulProjectPage(filter: { slug: { eq: $slug }}) {
 			edges {
 				node {
 					id

@@ -29,7 +29,7 @@ export default AboutPage
 
 export const query = graphql`
 	query aboutQuery {
-		allContentfulAbout {
+		allContentfulAboutPage {
 			edges {
 				node {
 					text {

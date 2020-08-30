@@ -139,7 +139,7 @@ export default BopPage
 
 export const query = graphql`
 	query bopQuery {
-		allContentfulProject(filter: { slug: { eq: "bop" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "bop" } }) {
 			edges {
 				node {
 					id

@@ -41,7 +41,7 @@ export default CoalfirePage
 
 export const query = graphql`
 	query coalfireQuery {
-		allContentfulProject(filter: { slug: { eq: "coalfire" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "coalfire" } }) {
 			edges {
 				node {
 					id

@@ -81,7 +81,7 @@ export default NyxPage
 
 export const query = graphql`
 	query nyxQuery {
-		allContentfulProject(filter: { slug: { eq: "nyx" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "nyx" } }) {
 			edges {
 				node {
 					id

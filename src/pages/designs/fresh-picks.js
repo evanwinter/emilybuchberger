@@ -73,7 +73,7 @@ export default FreshPicksPage
 
 export const query = graphql`
 	query freshPicksQuery {
-		allContentfulProject(filter: { slug: { eq: "fresh-picks" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "fresh-picks" } }) {
 			edges {
 				node {
 					id

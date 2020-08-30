@@ -42,7 +42,7 @@ export default SensesPage
 
 export const query = graphql`
 	query sensesQuery {
-		allContentfulProject(filter: { slug: { eq: "senses" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "senses" } }) {
 			edges {
 				node {
 					id

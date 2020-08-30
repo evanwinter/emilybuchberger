@@ -72,7 +72,7 @@ export default SplitwisePage
 
 export const query = graphql`
 	query splitwiseQuery {
-		allContentfulProject(filter: { slug: { eq: "splitwise" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "splitwise" } }) {
 			edges {
 				node {
 					id

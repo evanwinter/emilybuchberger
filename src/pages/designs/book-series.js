@@ -60,7 +60,7 @@ export default BookSeriesPage
 
 export const query = graphql`
 	query bookSeriesQuery {
-		allContentfulProject(filter: { slug: { eq: "book-series" } }) {
+		allContentfulProjectPage(filter: { slug: { eq: "book-series" } }) {
 			edges {
 				node {
 					id

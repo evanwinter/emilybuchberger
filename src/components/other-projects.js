@@ -8,12 +8,12 @@ import { fromContentful } from "../utils"
 const OtherProjects = () => {
 	const data = useStaticQuery(graphql`
 		query otherProjectsQuery {
-			allContentfulPortfolio {
+			allContentfulPortfolioLandingPage {
 				edges {
 					node {
 						title
 						projects {
-							... on ContentfulProject {
+							... on ContentfulProjectPage {
 								id
 								slug
 								subtitle
