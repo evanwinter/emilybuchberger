@@ -67,6 +67,10 @@ function Seo({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `monetization`,
+          content: site.siteMetadata.monetizationAddress
+        },
       ].concat(meta)}
     />
   )
