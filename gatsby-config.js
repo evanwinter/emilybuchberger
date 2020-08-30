@@ -10,7 +10,7 @@ module.exports = {
     title: `Emily Buchberger`,
     description: `Emily Buchberger is a Chicago-based designer.`,
     author: `Evan Winter`,
-    monetizationLink: `$ilp.uphold.com/3dH6dNfywHzx`
+    monetizationAddress: `$ilp.uphold.com/3dH6dNfywHzx`
   },
   plugins: [
     // react helmet
