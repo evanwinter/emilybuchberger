@@ -44,7 +44,6 @@ const getSource = ({ childImageSharp, publicURL }) => {
 export const prepareImages = (images) => {
 	const prepared = images.reduce((acc, curr) => {
 		const { localFile, title } = curr
-		const { childImageSharp } = localFile
 		const src = getSource(localFile)
 		acc[title] = {
 			title: title,
