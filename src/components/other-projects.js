@@ -39,7 +39,7 @@ const OtherProjects = () => {
 	const slug =
 		typeof window !== "undefined" && window.location.pathname.split("/")[2]
 
-	const [portfolio] = fromContentful(data, "portfolio")
+	const [portfolio] = fromContentful(data, "portfolioLandingPage")
 	const { projects } = portfolio
 	const slugs = projects.map((project) => project.slug)
 	const currentIndex = slugs.indexOf(slug)

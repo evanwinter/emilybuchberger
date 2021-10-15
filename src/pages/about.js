@@ -5,12 +5,12 @@ import Seo from "../components/seo"
 import ReactMarkdown from 'react-markdown'
 
 const AboutPage = ({ data }) => {
-	const [pageData] = data.allContentfulAbout.edges.map(edge => edge.node)
+	const [pageData] = data.allContentfulAboutPage.edges.map(edge => edge.node)
 	const aboutImage = pageData.image.localFile.childImageSharp.fluid
 	const aboutText = pageData.text.text
 	return (
 		<Fragment>
-			<Seo title="About" keywords={["TODO"]} />
+			<Seo title="About" keywords={["about", "emily buchberger", "graphic designer", "chicago"]} />
 			<section id="about-page" className="page-container">
 				<div className="about-layout">
 					<div className="left">

@@ -33,7 +33,7 @@ const PortfolioGrid = () => {
 			}
 		}
 	`)
-	const [portfolio] = fromContentful(data, "portfolio")
+	const [portfolio] = fromContentful(data, "portfolioLandingPage")
 	const { projects } = portfolio
 	return projects.map((project) => (
 		<PortfolioTile project={project} key={project.id} />
