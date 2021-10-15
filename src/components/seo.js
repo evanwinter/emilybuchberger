@@ -69,7 +69,7 @@ function Seo({ description, lang, meta, title }) {
         },
         {
           name: `monetization`,
-          content: site.siteMetadata.monetizationAddress
+          content: site.siteMetadata.monetizationAddress,
         },
       ].concat(meta)}
     />
