@@ -19,18 +19,3 @@ import device from "current-device"
  * Disable auto-scroll to top on page reload
  */
 export const shouldUpdateScroll = () => false
-
-
-/**
- * Intersection Observer polyfill
- * (required for gatsby-background-image)
- */
-export const onClientEntry = () => {
-
-	// typography.injectStyles()
-
-  if (typeof window.IntersectionObserver === `undefined`) {
-    import(`intersection-observer`)
-    console.log(`# IntersectionObserver is polyfilled`)
-  }
-}

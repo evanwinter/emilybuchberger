@@ -1,5 +1,3 @@
-import anime from "animejs"
-
 /**
  * Convert a space-separated string to dash-case
  */
@@ -70,24 +68,4 @@ export const capitalize = (str) => {
 export const fromContentful = (data, type) => {
 	const key = `allContentful${capitalize(type)}`
 	return data[key].edges.map((edge) => edge.node)
-}
-
-export const fadeIn = ({ targets, duration = 1000, delay = 0 }) => {
-
-	if (!targets) {
-		throw new Error("No targets provide for animate function")
-	}
-
-	const options = {
-		targets,
-		duration,
-		delay,
-		easing: "easeOutExpo",
-		opacity: 1,
-		complete: function(anim) {
-			anim.animatables[0].target &&
-				anim.animatables[0].target.classList.remove("fades-in")
-		},
-	}
-	anime(options)
 }
