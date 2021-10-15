@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Seo from "../../components/seo"
 import ProjectIntro from "../../components/project-intro"
 import ProjectLayout from "../../layouts/project-layout"
@@ -11,14 +11,13 @@ import { prepareImages, fromContentful } from "../../utils"
 const BookSeriesPage = ({ data }) => {
 	const [pageData] = fromContentful(data, "projectPage")
 	const { images, summary, title, subtitle, heroImage } = pageData
-	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
 
 	return (
-		<Fragment>
+        <Fragment>
 			<Seo title="Book Series" keywords={["TODO"]} />
 			<ProjectLayout name="book-series">
-				<Hero fluid={hero.fluid} />
+				<Hero image={heroImage.localFile.childImageSharp.gatsbyImageData} alt={heroImage.title} />
 				<ProjectIntro
 					title={title}
 					subtitle={subtitle}
@@ -26,72 +25,67 @@ const BookSeriesPage = ({ data }) => {
 				/>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-book-series-3"].fluid} />
+					<GatsbyImage image={allImages["project-book-series-3"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
 					<div className="grid">
-						<Img fluid={allImages["project-book-series-4"].fluid} />
-						<Img fluid={allImages["project-book-series-5"].fluid} />
+						<GatsbyImage image={allImages["project-book-series-4"].fluid} />
+						<GatsbyImage image={allImages["project-book-series-5"].fluid} />
 					</div>
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-book-series-6"].fluid} />
+					<GatsbyImage image={allImages["project-book-series-6"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-book-series-7"].fluid} />
+					<GatsbyImage image={allImages["project-book-series-7"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-book-series-8"].fluid} />
+					<GatsbyImage image={allImages["project-book-series-8"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["book-with-koko"].fluid} />
+					<GatsbyImage image={allImages["book-with-koko"].fluid} />
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
-	)
+    );
 }
 
 export default BookSeriesPage
 
-export const query = graphql`
-	query bookSeriesQuery {
-		allContentfulProjectPage(filter: { slug: { eq: "book-series" } }) {
-			edges {
-				node {
-					id
-					title
-					subtitle
-					summary {
-						summary
-					}
-					images {
-						title
-						localFile {
-							name
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-					heroImage {
-						title
-						localFile {
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+export const query = graphql`query bookSeriesQuery {
+  allContentfulProjectPage(filter: {slug: {eq: "book-series"}}) {
+    edges {
+      node {
+        id
+        title
+        subtitle
+        summary {
+          summary
+        }
+        images {
+          title
+          localFile {
+            name
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+        heroImage {
+          title
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `

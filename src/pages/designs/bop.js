@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Hero } from "../../components/hero"
 import Video from "../../components/video"
 import ProjectLayout from "../../layouts/project-layout"
@@ -15,14 +15,13 @@ const BopPage = ({ data }) => {
 	const [pageData] = fromContentful(data, "projectPage")
 
 	const { images, summary, title, subtitle, heroImage } = pageData
-	const hero = heroImage.localFile.childImageSharp
 	const media = prepareImages(images)
 
 	return (
-		<Fragment>
-			<Seo title="Bop" keywords={["TODO"]} />
+        <Fragment>
+			<Seo title="Bop" keywords={["graphic design", "portfolio", "product design"]} />
 			<ProjectLayout name="bop">
-				<Hero fluid={hero.fluid} />
+				<Hero image={heroImage.localFile.childImageSharp.gatsbyImageData} alt={heroImage.title} />
 				<ProjectIntro
 					title={title}
 					subtitle={subtitle}
@@ -32,13 +31,13 @@ const BopPage = ({ data }) => {
 				<ProjectRow style={{margin: `0rem auto 5rem auto`}} heading={"User Interviews"}>
 					<ThreeColumn>
 						<div className="card">
-							<Img fluid={media["BOP-graph-1"].fluid} />
+							<GatsbyImage image={media["BOP-graph-1"].fluid} alt={media["BOP-graph-1"].title} />
 						</div>
 						<div className="card">
-							<Img fluid={media["BOP-graph-2"].fluid} />
+							<GatsbyImage image={media["BOP-graph-2"].fluid} alt={media["BOP-graph-2"].title} />
 						</div>
 						<div className="card">
-							<Img fluid={media["BOP-graph-3"].fluid} />
+							<GatsbyImage image={media["BOP-graph-3"].fluid} alt={media["BOP-graph-3"].title} />
 						</div>
 					</ThreeColumn>
 				</ProjectRow>
@@ -46,22 +45,22 @@ const BopPage = ({ data }) => {
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}} heading={"User Personas"}>
 					<ThreeColumn>
 						<div className="card">
-							<Img fluid={media["BOP-persona-1"].fluid} />
+							<GatsbyImage image={media["BOP-persona-1"].fluid} alt={media["BOP-persona-1"].title} />
 						</div>
 						<div className="card">
-							<Img fluid={media["BOP-persona-2"].fluid} />
+							<GatsbyImage image={media["BOP-persona-2"].fluid} alt={media["BOP-persona-2"].title} />
 						</div>
 						<div className="card">
-							<Img fluid={media["BOP-persona-3"].fluid} />
+							<GatsbyImage image={media["BOP-persona-3"].fluid} alt={media["BOP-persona-3"].title} />
 						</div>
 					</ThreeColumn>
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
-					<Img
-						fluid={media["BOP-styleguide"].fluid}
-						style={{ maxHeight: "100vh" }}
-					/>
+					<GatsbyImage
+            image={media["BOP-styleguide"].fluid}
+            alt={media["BOP-styleguide"].title}
+            style={{ maxHeight: "100vh" }} />
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
@@ -70,11 +69,11 @@ const BopPage = ({ data }) => {
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
 					<TwoColumn>
-						<Img
-							fluid={media["BOP-zoom-nowplaying"].fluid}
-							style={{ maxHeight: "70vh" }}
-							imgStyle={{ objectFit: "contain" }}
-						/>
+						<GatsbyImage
+              image={media["BOP-zoom-nowplaying"].fluid}
+              alt={media["BOP-zoom-nowplaying"].title}
+              style={{ maxHeight: "70vh" }}
+              imgStyle={{ objectFit: "contain" }} />
 						<div className="copy">
 							<div className="content-wrapper">
 								<h3>User Problems:</h3>
@@ -126,50 +125,45 @@ const BopPage = ({ data }) => {
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto 5rem auto`}}>
-					<Img fluid={media["BOP-flow"].fluid} />
+					<GatsbyImage image={media["BOP-flow"].fluid} alt={media["BOP-flow"].title} />
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
-	)
+    );
 }
 
 export default BopPage
 
-export const query = graphql`
-	query bopQuery {
-		allContentfulProjectPage(filter: { slug: { eq: "bop" } }) {
-			edges {
-				node {
-					id
-					title
-					subtitle
-					summary {
-						summary
-					}
-					images {
-						title
-						localFile {
-							name
-							publicURL
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-					heroImage {
-						title
-						localFile {
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+export const query = graphql`query bopQuery {
+  allContentfulProjectPage(filter: {slug: {eq: "bop"}}) {
+    edges {
+      node {
+        id
+        title
+        subtitle
+        summary {
+          summary
+        }
+        images {
+          title
+          localFile {
+            name
+            publicURL
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+        heroImage {
+          title
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `

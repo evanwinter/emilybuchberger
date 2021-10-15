@@ -25,9 +25,11 @@ module.exports = {
       },
     },
 
+    `gatsby-plugin-image`,
+
     // sharp
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
 
     // manifest
     {

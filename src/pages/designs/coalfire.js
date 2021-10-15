@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
 import ProjectIntro from "../../components/project-intro"
@@ -11,14 +11,13 @@ import { prepareImages, fromContentful } from "../../utils"
 const CoalfirePage = ({ data }) => {
 	const [pageData] = fromContentful(data, "projectPage")
 	const { images, summary, title, subtitle, heroImage } = pageData
-	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
 
 	return (
-		<Fragment>
+        <Fragment>
 			<Seo title="Coalfire" keywords={["TODO"]} />
 			<ProjectLayout name="coalfire">
-				<Hero fluid={hero.fluid} />
+				<Hero image={heroImage.localFile.childImageSharp.gatsbyImageData} alt={heroImage.title} />
 				<ProjectIntro
 					title={title}
 					subtitle={subtitle}
@@ -26,53 +25,48 @@ const CoalfirePage = ({ data }) => {
 				/>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-coalfire-stamp"].fluid} />
+					<GatsbyImage image={allImages["project-coalfire-stamp"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-coalfire-colorway"].fluid} />
+					<GatsbyImage image={allImages["project-coalfire-colorway"].fluid} />
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
-	)
+    );
 }
 
 export default CoalfirePage
 
-export const query = graphql`
-	query coalfireQuery {
-		allContentfulProjectPage(filter: { slug: { eq: "coalfire" } }) {
-			edges {
-				node {
-					id
-					title
-					subtitle
-					summary {
-						summary
-					}
-					images {
-						title
-						localFile {
-							name
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-					heroImage {
-						title
-						localFile {
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+export const query = graphql`query coalfireQuery {
+  allContentfulProjectPage(filter: {slug: {eq: "coalfire"}}) {
+    edges {
+      node {
+        id
+        title
+        subtitle
+        summary {
+          summary
+        }
+        images {
+          title
+          localFile {
+            name
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+        heroImage {
+          title
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `

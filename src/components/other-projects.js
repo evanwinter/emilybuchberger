@@ -6,35 +6,32 @@ import PortfolioTile from "./portfolio-tile"
 import { fromContentful } from "../utils"
 
 const OtherProjects = () => {
-	const data = useStaticQuery(graphql`
-		query otherProjectsQuery {
-			allContentfulPortfolioLandingPage {
-				edges {
-					node {
-						title
-						projects {
-							... on ContentfulProjectPage {
-								id
-								slug
-								subtitle
-								title
-								coverImage {
-									title
-									localFile {
-										childImageSharp {
-											fluid(maxWidth: 1440, quality: 90) {
-												...GatsbyImageSharpFluid_noBase64
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	`)
+	const data = useStaticQuery(graphql`query otherProjectsQuery {
+  allContentfulPortfolioLandingPage {
+    edges {
+      node {
+        title
+        projects {
+          ... on ContentfulProjectPage {
+            id
+            slug
+            subtitle
+            title
+            coverImage {
+              title
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`)
 
 	const slug =
 		typeof window !== "undefined" && window.location.pathname.split("/")[2]

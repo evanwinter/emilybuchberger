@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Seo from "../../components/seo"
 import ProjectLayout from "../../layouts/project-layout"
 import ProjectIntro from "../../components/project-intro"
@@ -17,7 +17,7 @@ const FreshPicksPage = ({ data }) => {
 	const allImages = prepareImages(images)
 
 	return (
-		<Fragment>
+        <Fragment>
 			<Seo title="Fresh Picks" keywords={["TODO"]} />
 			<ProjectLayout name="fresh-picks">
 				<div className="hero">
@@ -30,26 +30,26 @@ const FreshPicksPage = ({ data }) => {
 				/>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-fp-magazine"].fluid} />
+					<GatsbyImage image={allImages["project-fp-magazine"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-fp-packing-slip"].fluid} />
+					<GatsbyImage image={allImages["project-fp-packing-slip"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
 					<div className="grid two-thirds-one-third">
-						<Img fluid={allImages["project-fp-print"].fluid} />
-						<Img fluid={allImages["project-fp-bag"].fluid} />
+						<GatsbyImage image={allImages["project-fp-print"].fluid} />
+						<GatsbyImage image={allImages["project-fp-bag"].fluid} />
 					</div>
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-fp-billboard"].fluid} />
+					<GatsbyImage image={allImages["project-fp-billboard"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
-					<Img fluid={allImages["project-fp-web"].fluid} />
+					<GatsbyImage image={allImages["project-fp-web"].fluid} />
 				</ProjectRow>
 
 				<ProjectRow>
@@ -66,52 +66,47 @@ const FreshPicksPage = ({ data }) => {
 
 			</ProjectLayout>
 		</Fragment>
-	)
+    );
 }
 
 export default FreshPicksPage
 
-export const query = graphql`
-	query freshPicksQuery {
-		allContentfulProjectPage(filter: { slug: { eq: "fresh-picks" } }) {
-			edges {
-				node {
-					id
-					title
-					subtitle
-					summary {
-						summary
-					}
-					pdf {
-						localFile {
-							publicURL
-						}
-					}
-					images {
-						title
-						localFile {
-							name
-							publicURL
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-					heroImage {
-						title
-						localFile {
-							publicURL
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+export const query = graphql`query freshPicksQuery {
+  allContentfulProjectPage(filter: {slug: {eq: "fresh-picks"}}) {
+    edges {
+      node {
+        id
+        title
+        subtitle
+        summary {
+          summary
+        }
+        pdf {
+          localFile {
+            publicURL
+          }
+        }
+        images {
+          title
+          localFile {
+            name
+            publicURL
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+        heroImage {
+          title
+          localFile {
+            publicURL
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `

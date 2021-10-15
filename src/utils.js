@@ -48,7 +48,7 @@ export const prepareImages = (images) => {
 		acc[title] = {
 			title: title,
 			fluid: localFile.childImageSharp
-				? localFile.childImageSharp.fluid
+				? localFile.childImageSharp.gatsbyImageData
 				: localFile.publicURL,
 			src: src
 		}

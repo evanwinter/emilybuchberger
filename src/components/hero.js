@@ -1,13 +1,13 @@
 import React from "react"
 import FluidImg from "./fluid-img"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const Hero = (props) => {
 	return (
-		<div className="ProjectHero">
-			<Img {...props} />
+    <div className="ProjectHero">
+			<GatsbyImage {...props} />
 		</div>
-	)
+  );
 }
 
 export const FluidHero = (props) => {

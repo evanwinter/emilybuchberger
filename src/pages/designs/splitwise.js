@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
 import ProjectIntro from "../../components/project-intro"
@@ -11,14 +11,13 @@ import { prepareImages, fromContentful } from "../../utils"
 const SplitwisePage = ({ data }) => {
 	const [pageData] = fromContentful(data, "projectPage")
 	const { images, summary, title, subtitle, heroImage } = pageData
-	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
 
 	return (
-		<Fragment>
+        <Fragment>
 			<Seo title="Splitwise" keywords={["TODO"]} />
 			<ProjectLayout name="splitwise">
-				<Hero fluid={hero.fluid} />
+				<Hero image={heroImage.localFile.childImageSharp.gatsbyImageData} alt={heroImage.title} />
 
 				<ProjectIntro
 					title={title}
@@ -46,63 +45,58 @@ const SplitwisePage = ({ data }) => {
 				</ProjectRow>
 
 				<ProjectRow full style={{ backgroundColor: `#223322` }}>
-					<Img fluid={allImages["splitwise-wireframe"].fluid} />
+					<GatsbyImage image={allImages.childImageSharp.gatsbyImageData} />
 				</ProjectRow>
 
 				<ProjectRow style={{margin: `5rem auto`}}>
 					<div className="grid three">
 						<div className="grid-item">
-							<Img fluid={allImages["splitwise-phone-1"].fluid} />
+							<GatsbyImage image={allImages.childImageSharp.gatsbyImageData} />
 						</div>
 						<div className="grid-item">
-							<Img fluid={allImages["splitwise-phone-2"].fluid} />
+							<GatsbyImage image={allImages.childImageSharp.gatsbyImageData} />
 						</div>
 						<div className="grid-item">
-							<Img fluid={allImages["splitwise-phone-3"].fluid} />
+							<GatsbyImage image={allImages.childImageSharp.gatsbyImageData} />
 						</div>
 					</div>
 				</ProjectRow>
 			</ProjectLayout>
 		</Fragment>
-	)
+    );
 }
 
 export default SplitwisePage
 
-export const query = graphql`
-	query splitwiseQuery {
-		allContentfulProjectPage(filter: { slug: { eq: "splitwise" } }) {
-			edges {
-				node {
-					id
-					title
-					subtitle
-					summary {
-						summary
-					}
-					images {
-						title
-						localFile {
-							name
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-					heroImage {
-						title
-						localFile {
-							childImageSharp {
-								fluid(maxWidth: 1440, quality: 90) {
-									...GatsbyImageSharpFluid_noBase64
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+export const query = graphql`query splitwiseQuery {
+  allContentfulProjectPage(filter: {slug: {eq: "splitwise"}}) {
+    edges {
+      node {
+        id
+        title
+        subtitle
+        summary {
+          summary
+        }
+        images {
+          title
+          localFile {
+            name
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+        heroImage {
+          title
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90, placeholder: NONE, layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+  }
+}
 `
