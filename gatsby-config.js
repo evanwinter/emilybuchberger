@@ -33,12 +33,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Emily Buchberger`,
+        short_name: `embuch`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
+        background_color: `#fff`,
+        theme_color: `#fff`,
+        display: `standalone`,
         icon: `src/assets/icons/favicon/smiley.png`,
       },
     },
