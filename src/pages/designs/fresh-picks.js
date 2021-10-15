@@ -10,7 +10,7 @@ import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const FreshPicksPage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
+	const [pageData] = fromContentful(data, "projectPage")
 	const { images, pdf, summary, title, subtitle, heroImage } = pageData
 	const heroSrc = heroImage.localFile.publicURL
 	const heroTitle = heroImage.title

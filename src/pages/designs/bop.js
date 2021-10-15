@@ -12,9 +12,7 @@ import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const BopPage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
-
-	console.log(pageData)
+	const [pageData] = fromContentful(data, "projectPage")
 
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp

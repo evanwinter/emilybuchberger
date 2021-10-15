@@ -9,7 +9,7 @@ import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const BookSeriesPage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
+	const [pageData] = fromContentful(data, "projectPage")
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)

@@ -10,7 +10,7 @@ import Seo from "../../components/seo"
 import { prepareImages, fromContentful } from "../../utils"
 
 const NyxPage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
+	const [pageData] = fromContentful(data, "projectPage")
 	const { images, pdf, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)

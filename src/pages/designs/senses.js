@@ -9,7 +9,7 @@ import { Hero } from "../../components/hero"
 import { prepareImages, fromContentful } from "../../utils"
 
 const SensesPage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
+	const [pageData] = fromContentful(data, "projectPage")
 
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp

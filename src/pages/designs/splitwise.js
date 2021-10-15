@@ -4,13 +4,12 @@ import Img from "gatsby-image"
 import ProjectLayout from "../../layouts/project-layout"
 import Seo from "../../components/seo"
 import ProjectIntro from "../../components/project-intro"
-import { ThreeColumn } from "../../components/columns"
 import { Hero } from "../../components/hero"
 import ProjectRow from "../../components/project-row"
 import { prepareImages, fromContentful } from "../../utils"
 
 const SplitwisePage = ({ data }) => {
-	const [pageData] = fromContentful(data, "project")
+	const [pageData] = fromContentful(data, "projectPage")
 	const { images, summary, title, subtitle, heroImage } = pageData
 	const hero = heroImage.localFile.childImageSharp
 	const allImages = prepareImages(images)
